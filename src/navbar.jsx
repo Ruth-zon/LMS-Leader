@@ -139,7 +139,7 @@ function Navigation() {
                 id="basic-nav-dropdown"
               >
                 <NavDropdown.Item href="/editcourse/0">
-                  New course{' '}
+                  New course
                 </NavDropdown.Item>
                 <NavDropdown.Item href="">View my courses</NavDropdown.Item>
                 <NavDropdown.Item

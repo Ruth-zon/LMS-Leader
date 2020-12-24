@@ -79,7 +79,6 @@ function Navigation() {
             variant="outline-primary"
             className="register"
             onClick={() => {
-              debugger;
               history.push({
                 pathname: '/login',
                 state: {

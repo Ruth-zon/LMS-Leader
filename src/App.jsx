@@ -49,14 +49,6 @@ import {connect} from 'react-redux';
 import Spinner from './spinner/spinner';
 import {actions} from './Store/actions';
 
-// import {NavigationContainer} from '@react-navigation/native';
-// import {createStackNavigator} from '@react-navigation/stack';
-
-// const Stack = createStackNavigator();
-
-// const history = createHashHistory();
-// const browserHistory = createBrowserHistory();
-
 function mapStateToProps(state) {
   return {
     styles: state.stylesReducer.styles,
@@ -67,16 +59,12 @@ const mapDispatchToProps = (dispatch) => ({
 });
 function App(props) {
   useEffect(() => {
-    // props.setProcess(false);
   });
   return (
     <div className="App">
       
         <Router history={history}>
           <Switch>
-            {/* <Route path="/help">
-            <Help />
-          </Route> */}
             <Route path="/login" component={Login}>
               {/* <Login /> */}
             </Route>
@@ -95,18 +83,7 @@ function App(props) {
             <Route path="/:name" component={RouteConfig}>
               {/* <RouteConfig /> */}
             </Route>
-            {/* <Route path="/:name/addcourse">
-            <AddCoursePage />
-          </Route> */}
-            {/* <Route path="/:course/">
-            <CoursePage />
-          </Route>
-          <Route path="/:course/:lesson/">
-            <LessonPage />
-          </Route>
-         <Route path="course/lesson/:id">
-            <EditCoursePage />
-          </Route> */}
+
             <Route exact path="/">
               <Redirect to="/login" />
               {/* <HomePage /> */}

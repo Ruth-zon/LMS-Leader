@@ -78,7 +78,7 @@ function RowCategories(props) {
   for (var i = 0; i < props.data.school.categories.length; i++) {
     let x = i;
     rows.push(
-      <Col xs="12" sm="6" md="4" lg="3" xl="2">
+      <Col xs="12" sm="6" md="4" lg="3" xl="2" key={x}>
         <Card
           key={x}
           onClick={() => props.data.setSectionConfig({ name: 'category', id: x })}
@@ -98,7 +98,7 @@ function RowCategories(props) {
             ])
           }
         /> */}
-          <div class="file-upload">
+          <div className="file-upload">
             <Card.Img
               variant="top"
               src={props.data.school.categories[i].icon}

@@ -86,7 +86,8 @@
   width: 20px;
 }
 #thumbtack,
-#menu {
+#menu,
+#out {
   width: 16px;
   margin: 3px;
   cursor: pointer;
@@ -109,13 +110,13 @@
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px grey; 
+  box-shadow: inset 0 0 5px grey;
   border-radius: 10px;
-  background: #ffffff; 
+  background: #ffffff;
 }
- 
+
 ::-webkit-scrollbar-thumb {
-  background: #f56962; 
+  background: #f56962;
   border-radius: 10px;
 }
 /* 

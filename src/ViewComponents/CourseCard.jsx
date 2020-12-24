@@ -59,7 +59,7 @@ export default function CourseCard(props) {
             </Col>
             <Col xs="4" className="align-right">
               <FaRegPlayCircle color="#3E9365" />
-              {props.course.lesson + ' '} Lessons
+              {props.course.lessons.length + ' '} Lessons
             </Col>
           </Row>
         </Container>
@@ -74,7 +74,7 @@ export default function CourseCard(props) {
         <Container>
           <Row>
             <Col xs="2" className="align-left profile">
-              <img src={props.course.teacher.image} alt="card"></img>
+              <img src={props.course.teacher.img} alt="card"></img>
             </Col>
             <Col xs="4" className="align-left profile">
               {props.course.teacher.name}

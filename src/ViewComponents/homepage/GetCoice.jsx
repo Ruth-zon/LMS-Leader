@@ -32,7 +32,7 @@ function CourseCards(props) {
     listItems.push(
       <>
         <Col xs="12" md="6" xl="4">
-          <CourseCard course={courses_algo[i]} />
+          <CourseCard key={i}  course={courses_algo[i]} />
         </Col>
       </>
     );
@@ -70,7 +70,7 @@ export default connect(
       </div>
       <Container className="content">
         <Row>
-          <CourseCards school={props.school} courses={Courses} />
+          <CourseCards school={props.school} courses={props.courses} />
         </Row>
       </Container>
     </section>

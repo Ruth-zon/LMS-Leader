@@ -51,7 +51,7 @@ function CourseCards(props) {
         {/* // <Carousel.Item> */}
         {/* <CardDeck> */}
         <Col xs="12" md="6" xl="4">
-          <CourseCard course={courses_algo[i]} />
+          <CourseCard key={i} course={courses_algo[i]} />
         </Col>
         {/* <ListCourses i={i * 3} courses={courses_algo} /> */}
         {/* // </CardDeck> */}

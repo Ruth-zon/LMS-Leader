@@ -7,6 +7,8 @@ import $ from 'jquery'
 import history from '../../history';
 import { actions } from '../../Store/actions';
 import { useParams } from 'react-router-dom';
+import { FaSignOutAlt } from 'react-icons/fa';
+import { signOut } from '../../login/firebase';
 // import { setFlagToggleCon ,setFlagthumbtack} from '../../redux/actions/funnel.action'
 
 
@@ -30,12 +32,10 @@ function Top_frame(props) {
                 <img src={'./img_from_xd/leader-logo.png'} id="img_logo" className="m-auto"></img>
 
             </a>
-
-
             <div id="top_frame_icons" className="mr-3">
-                <img src={props.user.photoURL} onClick={() => {history.push('/' + name + '/profile'); window.location.reload()}
-                } className=" logo-img" />
-
+                <img src={props.user.photoURL} onClick={() => {history.push('/' + name + '/profile')}
+                } className="logo-img" />
+                <FaSignOutAlt id="out" onClick={signOut}/>
                 <img src={'./img_from_xd/thumbtack-solid.svg'} id="thumbtack" className={props.styles.thumbtack ? "rotateThumbtack" : ""} onClick={() => props.setThumbtack()} />
                 <img src={'./img_from_xd/menu.png'} id="menu" className="" onClick={() => props.setConfigurator()} />
                 {/* 

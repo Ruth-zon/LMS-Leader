@@ -66,12 +66,6 @@ const initialState = {
       header: "Choice favourite course from top category",
       algorithm:"views"
     },
-    // footer: {
-    //   "Company": ["About", "Careers", "Press", "Blog", "Affiliates",],
-    //   "Community": [ "Go Premium", "Team Plans", "Refer a Friend", "Gift Cards", "Scholarships",],
-    //   3: [],
-    //   4: [],
-    // },
     show: {
       categories: true,
       CTA: true,

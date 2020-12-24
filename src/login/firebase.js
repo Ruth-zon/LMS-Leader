@@ -164,7 +164,7 @@ export function checkPremission(data) {
                     // store.dispatch(actions.getSchoolFromServer(uid))
                     store.dispatch(actions.getAllForUser(userName))
                     debugger
-                    if (history.state.state.from) {
+                    if (history.state&& history.state.state.from) {
                         history.push({
                             pathname: '/' + history.state.state.from,
                             state: {

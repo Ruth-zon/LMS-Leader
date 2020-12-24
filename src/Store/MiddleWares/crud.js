@@ -21,17 +21,16 @@ import Lesson from '../Reducers/Lesson';
 
 export const getCourses = ({ dispatch, getState }) => next => action => {
     //courses
-    // let jwt = getCookie('jwt');
-    let jwt = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJ3ZGtwNUQyaFJPYzRYSmJCY3FkdzlDOUM3T3gyIiwiZW1haWwiOiJydXRoem9uQGxlYWRlci5jb2RlcyIsImlwIjoiMTk1LjYwLjIzNS4xNDEiLCJpYXQiOjE2MDU3ODA2MDh9.StX-QtG8q4z2JvJ4VFMZQn2PYkb0vqo00Vbmn0GNlFU';
+    let jwt = getCookie('jwt');
+    // let jwt = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJ3ZGtwNUQyaFJPYzRYSmJCY3FkdzlDOUM3T3gyIiwiZW1haWwiOiJydXRoem9uQGxlYWRlci5jb2RlcyIsImlwIjoiMTk1LjYwLjIzNS4xNDEiLCJpYXQiOjE2MDU3ODA2MDh9.StX-QtG8q4z2JvJ4VFMZQn2PYkb0vqo00Vbmn0GNlFU';
 
     const user = getState().userReducer.user;
 
-    let uid = "wdkp5D2hROc4XJbBcqdw9C9C7Ox2"
-    // let uid = user.uid;
+    // let uid = "wdkp5D2hROc4XJbBcqdw9C9C7Ox2"
+    let uid = user.uid;
 
     // const url = "https://lobby.leader.codes/api";
     if (action.type === 'GET_COURSES_FROM_SERVER') {
-        debugger
         if (action.payload)
             uid = action.payload
         $.ajax({
@@ -93,8 +92,7 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
             },
         });
     }
-    if (action.type === 'GET_COURSES_FROM_SERVER_2') {
-        debugger
+    if (action.type === 'GET_COURSES_FROM_SERVER2') {
         $.ajax({
             url: 'https://lms.leader.codes/api/' + action.payload + '/coursesNoAuth',
             method: 'get',
@@ -452,7 +450,7 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
                 if (res) {
                     dispatch(actions.initialSchool(res));
                     if (getState().listCoursesReducer.courses.length == 0)
-                        if (user._id)
+                        if (!user._id || user._id==0)
                             dispatch(actions.getCoursesFromServer2(action.payload))
                         else
                             dispatch(actions.getCoursesFromServer(res.uid))

@@ -68,7 +68,7 @@ export default connect(
               )}
             </Col>
             <Col md="6">
-              <div class="file-upload hover-img">
+              <div className="file-upload hover-img">
                 <img
                   src={props.school.image}
                   // src={process.env.PUBLIC_URL + props.school.image}
