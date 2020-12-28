@@ -2,14 +2,14 @@ import { FaRegStar, FaRegEye, FaRegPlayCircle } from 'react-icons/all';
 import React, { useContext, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Card, Container, Row, Col } from 'react-bootstrap';
-import './homepage/App.css';
-import { actions } from '../Store/actions';
+import '../homepage/App.css';
+import { actions } from '../../Store/actions';
 import { createHashHistory } from 'history';
 import { createBrowserHistory } from 'history';
-import { UserContext } from '../login/userProvider';
-import { Courses } from '../Store/data'
+import { UserContext } from '../../login/userProvider';
+import { Courses } from '../../Store/data'
 import $ from 'jquery';
-import history from '../history'
+import history from '../../history'
 import { Item } from 'semantic-ui-react';
 
 // const history = createHashHistory();

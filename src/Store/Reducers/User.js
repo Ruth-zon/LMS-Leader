@@ -10,21 +10,23 @@ const initialState = {
         email: '',
         photoURL: './img_from_xd/User.png',
         isPro: false,
-        mySchool: '',
+        school: '',
         profession: ' illustrator & Artist',
         about: 'Hi, my name is Amelie. I am a photo artist and art director from Munich. Last year I was chosen to be one of the nine Adobe Creative Residents in 2019/2020.My pictures are widely known for their colorful, surrealistic touch. by books, lyrics and words in total, I am able to abstract and visualize them into new artworks.',
-        schoolList: [{
-            schoolId: '',
-            coursesEnrolled: ['', '']
-        }, {
-            schoolId: '',
-            coursesEnrolled: ['', '']
+        schoolsEnrolled: [{
+            uid: "",
+            name: "",
+            coursesEnrolled: {
+                courseId: "",
+                stars:2,
+                finishedLessons: [true,false,false]
+            }
         }],
         colors: {
             aboutStudent: '#FEF0EF',
             recomandCourses: '#EFEFF6'
         },
-        lesson: Courses.lessons,
+        // lesson: Courses.lessons,
 
     }
 };
@@ -36,7 +38,7 @@ const myuser = {
         }
     },
     initialUser(state, action) {
-        state.lesson = action.payload;
+        state.user = action.payload;
     },
 };
 

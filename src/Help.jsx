@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import {actions} from './Store/actions';
 
 function mapStateToProps(state) {
-  debugger;
   return {
     course: state.courseReducer.course,
   };

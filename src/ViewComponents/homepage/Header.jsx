@@ -39,9 +39,9 @@ export default connect(
                   <InputGroup.Append>
                     <InputGroup.Text
                       id="basic-addon2"
-                    // style={{ backgroundColor: props.school.colors.searchbar }}
+                    style={{ backgroundColor: props.school.colors.searchbar }}
                     >
-                      <FaSearch color="white" />
+                      <FaSearch color="f56962" />
                     </InputGroup.Text>
                   </InputGroup.Append>
                 </InputGroup>

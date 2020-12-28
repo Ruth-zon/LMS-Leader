@@ -45,7 +45,6 @@ export default connect(
         return <FaReddit />;
       case 'google':
         return <FaGoogle />;
-
       default:
         break;
     }
@@ -82,9 +81,9 @@ export default connect(
               >
                 <h5>{col.name}</h5>
                 <ul className="list-unstyled quick-links">
-                  {col.array.map((value, key) => {
+                  {col.array.map((value, i) => {
                     return (
-                      <li key={key}>
+                      <li key={i}>
                         <a 
                         // onClick={() => history.push(col.links[key])}
                         >

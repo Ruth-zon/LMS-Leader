@@ -6,6 +6,7 @@ import '../../ViewComponents/homepage/App.css';
 function mapStateToProps(state) {
   return {
     school: state.schoolReducer.school,
+    user:state.userReducer.user
   };
 }
 
@@ -14,7 +15,7 @@ class CTA extends Component {
   render() {
     return (
       <div>
-        <section
+        {this.props.user.uid? <section
           className="cta white"
           style={{ backgroundColor: this.props.school.colors.CTA }}
         >
@@ -28,7 +29,7 @@ class CTA extends Component {
             </em>
           </h4>
           <button>Get Started</button>
-        </section>
+        </section>:null}
       </div>
     );
   }

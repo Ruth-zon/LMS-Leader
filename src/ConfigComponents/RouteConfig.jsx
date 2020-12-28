@@ -18,7 +18,7 @@ import CoursePageFrame from './Frame/CoursePageFrame';
 // import LessonConfig from './lessonPage/LessonConfig';
 import LessonPageFrame from './Frame/LessonPageFrame';
 import TopFrame from './Frame/top_frame';
-import StudentProfilePage from '../ViewComponents/studentProfilePage';
+import StudentProfilePage from '../ViewComponents/profilePage/studentProfilePage';
 import Spinner from '../spinner/spinner';
 
 // import studentProfilePage from '../ViewComponents/studentProfilePage';

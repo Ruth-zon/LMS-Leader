@@ -26,13 +26,13 @@ function Navigation() {
   //   window.location.reload();
   // }
   const nav=()=>{
-    debugger;
     history.push({
       pathname: '/login',
-      state: {
-        from: history.location.pathname,
-      },
+      // state: {
+      //   from: history.location.pathname,
+      // },
     });
+    localStorage.setItem("from",history.location.pathname)
   }
   return (
     <>

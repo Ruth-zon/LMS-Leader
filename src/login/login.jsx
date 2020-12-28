@@ -21,7 +21,7 @@ import {
 import {UserContext} from './userProvider';
 import $ from 'jquery';
 import {Link, withRouter} from 'react-router-dom';
-import history from '../history'
+import history from '../history';
 
 // const history = createHashHistory();
 // const browserHistory = createBrowserHistory();
@@ -103,7 +103,7 @@ export default withRouter(function Login(props) {
       //     })
       //     .catch(function (error) {});
       // } else
-       if (user) {
+      if (user) {
         console.log('user: ' + user);
         auth.currentUser
           .getIdToken(true)

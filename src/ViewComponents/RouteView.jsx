@@ -18,7 +18,7 @@ import {actions} from '../Store/actions';
 // import LessonConfig from './lessonPage/LessonConfig';
 //   import LessonPageFrame from './Frame/LessonPageFrame';
 //   import TopFrame from './Frame/top_frame';
-import StudentProfilePage from '../ViewComponents/studentProfilePage';
+import StudentProfilePage from './profilePage/studentProfilePage';
 import CoursePage from './coursepage/CoursePage';
 import LessonPage from './lessonPage/LessonPage';
 import SearchCourse from './SearchPage/ShearchCourse';

@@ -24,7 +24,7 @@ export const getCookie = (c_name) => {
   return '';
 };
 
-const usernameCheck = (setUserProps, getAllForUser) => {
+const usernameCheck = (setUserProps, getAllForUser, uid) => {
   const jwt = getCookie('jwt');
   // let jwt =
   // 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJ3ZGtwNUQyaFJPYzRYSmJCY3FkdzlDOUM3T3gyIiwiZW1haWwiOiJydXRoem9uQGxlYWRlci5jb2RlcyIsImlwIjoiMTk1LjYwLjIzNS4xNDEiLCJpYXQiOjE2MDU3ODA2MDh9.StX-QtG8q4z2JvJ4VFMZQn2PYkb0vqo00Vbmn0GNlFU';
@@ -63,6 +63,17 @@ const usernameCheck = (setUserProps, getAllForUser) => {
   //     console.log(err);
   //   }
   // });
+  if (
+    value == 'login' ||
+    value == 'register' ||
+    value == 'wizard' ||
+    value == 'view' ||
+    value == 'profile' ||
+    value == 'search' ||
+    value == 'addCourse' ||
+    value == 'addlesson'
+  )
+    swal('Oops...', 'The username is not valid, please try other.', 'error');
   fetch('https://lms.leader.codes/register/checkUsername', {
     method: 'POST',
     headers: {
@@ -83,13 +94,11 @@ const usernameCheck = (setUserProps, getAllForUser) => {
         swal('succsess', 'Username available and created!', 'succsess');
         setUserProps({userName: value});
         getAllForUser(value);
-        if (history.state.state.from) {
-          history.push({
-            pathname: '/' + history.state.state.from,
-            state: {
-              from: '',
-            },
-          });
+        // if (history.state.state!="undefined"&&history.state.state.from!="") {
+        let from = localStorage.getItem('from');
+        if (from) {
+          localStorage.setItem('sid', uid);
+          history.push('/' + from);
         } else history.push('/' + value);
 
         // history.push(history.state.state.from)
@@ -170,7 +179,8 @@ class Wizard extends Component {
                   onClick={() =>
                     usernameCheck(
                       this.props.setUserProps,
-                      this.props.getAllForUser
+                      this.props.getAllForUser,
+                      this.props.user.uid
                     )
                   }
                 >

@@ -26,14 +26,14 @@ function HomePage() {
     <>
       <Navigation />
       <Header />
-      <Categories data={ctgs} />
+      <Categories />
       <GetChoice />
-      <LearningPlatform data={lrn} />
+      <LearningPlatform />
       <WorldSelectionCourse />
       <CTACopy />
       <Testimoinal />
       {/* <Testimoinal data={tst} /> */}
-      <OurPartner data={prt} />
+      <OurPartner  />
       <Footer />
     </>
   );

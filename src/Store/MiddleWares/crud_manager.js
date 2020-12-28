@@ -12,14 +12,14 @@ import Lesson from '../Reducers/Lesson';
 // const history = createBrowserHistory();
 
 // const url="localhost:3000"
-// const url="lms.leader.codes"
+const url="lms.leader.codes"
 // const user=store.getState().userReducer.user;
 
 
 
 // router.get("/students", studentsController.getStudents);
 
-export const getCourses = ({ dispatch, getState }) => next => action => {
+export const manager = ({ dispatch, getState }) => next => action => {
     //courses
     let jwt = getCookie('jwt');
     // let jwt = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJ3ZGtwNUQyaFJPYzRYSmJCY3FkdzlDOUM3T3gyIiwiZW1haWwiOiJydXRoem9uQGxlYWRlci5jb2RlcyIsImlwIjoiMTk1LjYwLjIzNS4xNDEiLCJpYXQiOjE2MDU3ODA2MDh9.StX-QtG8q4z2JvJ4VFMZQn2PYkb0vqo00Vbmn0GNlFU';
@@ -92,36 +92,7 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
             },
         });
     }
-    if (action.type === 'GET_COURSES_FROM_SERVER2') {
-        $.ajax({
-            url: 'https://lms.leader.codes/api/' + action.payload + '/coursesNoAuth',
-            method: 'get',
-            dataType: 'json',
-            contentType: 'application/json',
-            withCradentials: true,
-            // data: JSON.stringify(dataToProfilePage),
-            success: function (data) {
-                let courses = []
-                if (data && data.length) {
-                    for (let course in data) {
-                        courses.push(data[course])
-                    }
-                    dispatch(actions.initialCourses(courses))
-                }
-                var url = window.location;
-                if (decodeURI(url.pathname.split('/')[1]) == "view") {
-                    var course = decodeURI(url.pathname.split('/')[3]);
-                    if (course) {
-                        let cours = courses.find((c) => (c.name == course));
-                        if (cours) {
-                            dispatch(actions.initialCourse(cours));
-                            dispatch(actions.initialEmptyLesson())
-                        }
-                    }
-                }
-            },
-        });
-    }
+
     if (action.type === 'ADD_COURSE_TO_SERVER') {
         let course = Object.assign({}, action.payload);
         delete course["lessons"];
@@ -335,7 +306,7 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
                     // window.location.reload();
                     dispatch(actions.initialSchool(data.data));
                     console.log("school " + data.data._id);
-                    swal("School saved successfully", "", "success");
+                    swal("School saved successfully", "the link to your school: https://"+url+"/view/"+data.data._id, "success");
                 },
                 error: function () {
                     swal("Oops...", "Something went wrong, please try again later", "error");
@@ -420,53 +391,8 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
             }
 
         });
-        // fetch('https://lms.leader.codes/api/' + userName + 'getUid', {
-        //     method: 'GET',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //         Authorization: jwt,
-        //     },
-        //     body: JSON.stringify({ userName: userName }),
-        // })
-        //     .then((res) => { res.json() })
-        //     .then((res) => {
-        //         if (res && res.data.uid) {
-        //             let user = res.data;
-        //             store.dispatch(actions.getCoursesFromServer(user.uid))
-        //             store.dispatch(actions.getSchoolFromServer(user.uid))
-        //             store.dispatch(actions.setUserProps({ "uid": user.uid, "email": user.email, "photoURL": user.photo_URL, "userName": user.username }))
-        //         }
-        //     });
-
     }
-    if (action.type === 'GET_ALL_FOR_STUDENT') {
-        dispatch(actions.setProcess(true));
-        $.ajax({
-            url: 'https://lms.leader.codes/api/' + action.payload + '/schoolNoAuth',
-            method: 'get',
-            contentType: 'application/json',
-            withCradentials: true,
-            success: function (res) {
-                if (res) {
-                    dispatch(actions.initialSchool(res));
-                    if (getState().listCoursesReducer.courses.length == 0)
-                        if (!user._id || user._id==0)
-                            dispatch(actions.getCoursesFromServer2(action.payload))
-                        else
-                            dispatch(actions.getCoursesFromServer(res.uid))
-                    dispatch(actions.setProcess(false));
-
-                }
-            },
-            error: function (err) {
-                console.log("error get all for user " + err.massage);
-                dispatch(actions.setProcess(false));////////////////
-            }
-
-        });
-
-
-    }
+ 
     return next(action);
 }
 

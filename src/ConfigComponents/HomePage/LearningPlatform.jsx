@@ -47,7 +47,7 @@ export default connect(
       <Container>
         <Row>
           <Col xs="6">
-            <div class="file-upload hover-img">
+            <div className="file-upload hover-img">
               <Image src={props.school.learning.image}></Image>
               <input
                 type="file"
@@ -69,7 +69,6 @@ export default connect(
 
 function handleHeader(e) {
   console.log(e.target.velue);
-  debugger;
 }
 function RowLearning(props) {
   var rows = [];

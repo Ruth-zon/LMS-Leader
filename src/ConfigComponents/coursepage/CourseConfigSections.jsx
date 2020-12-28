@@ -921,7 +921,6 @@ export function ConfigTopEducatorsX(props) {
 }
 
 export function CourseButtons(props) {
-  debugger;
   return (
     <>
       <h5>Buttons</h5>

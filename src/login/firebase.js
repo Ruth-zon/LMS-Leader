@@ -53,7 +53,6 @@ export const signInWithGoogle = (event) => {
 export const signOut = () => {
     let exsistsJwt = document.cookie.split(";").filter(s => s.includes('jwt'));
     console.log(exsistsJwt);
-
     auth
         .signOut()
         .then(function () {
@@ -155,22 +154,17 @@ export function checkPremission(data) {
 
                 if (!data.is_username) {
                     // store.dispatch(actions.getCoursesFromServer(uid))
-
                     history.push('/wizard')
                     // window.location.reload()
                 }
                 else {
                     // store.dispatch(actions.getCoursesFromServer(uid))
                     // store.dispatch(actions.getSchoolFromServer(uid))
-                    store.dispatch(actions.getAllForUser(userName))
-                    debugger
-                    if (history.state&& history.state.state.from) {
-                        history.push({
-                            pathname: '/' + history.state.state.from,
-                            state: {
-                                from: "",
-                            },
-                        });
+                    // store.dispatch(actions.getAllForUser(userName))
+                    let from = localStorage.getItem('from')
+                    if (from) {
+                        localStorage.setItem('sid', uid);
+                        history.push('/' + from);
                     }
                     else
                         history.push('/' + userName);
