@@ -58,6 +58,7 @@ class Testimoinal extends Component {
             {this.props.school.testimoinals.map((item, key) => {
               return (
                 <Card
+                key={key}
                   className="test-card hover-trash "
                 >
                   <Card.Body>
@@ -68,7 +69,7 @@ class Testimoinal extends Component {
                       <p>{item.name}</p>
                     </Card.Title>
                     <Card.Text>
-                      <p>{item.description}</p>
+                    {item.description}
                     </Card.Text>
                   </Card.Body>
                 </Card>

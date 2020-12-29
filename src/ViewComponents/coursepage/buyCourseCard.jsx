@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 function mapStateToProps(state) {
   return {
-    course: state.currentCourseReducer.currentCourse,
+    course: state.courseReducer.course,
     
   };
 }

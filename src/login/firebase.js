@@ -161,13 +161,17 @@ export function checkPremission(data) {
                     // store.dispatch(actions.getCoursesFromServer(uid))
                     // store.dispatch(actions.getSchoolFromServer(uid))
                     // store.dispatch(actions.getAllForUser(userName))
-                    let from = localStorage.getItem('from')
-                    if (from) {
+                    let school = localStorage.getItem('school')
+                    let back = localStorage.getItem('back')
+                    if (back == true && school != "undefined" && school != undefined) {
                         localStorage.setItem('sid', uid);
-                        history.push('/' + from);
+                        store.dispatch(actions.addStudentToSchool({ "uid": uid, "school": school }))
+                        history.push('/view/' + school);
                     }
                     else
                         history.push('/' + userName);
+                    localStorage.removeItem('back');
+
                 }
             }
         }

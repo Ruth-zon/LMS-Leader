@@ -111,10 +111,8 @@ const Register = (props) => {
   // const passswordSignIn = () => {
   //   firebase.auth().signInWithEmailAndPassword();
   // };
-  const handleClick = () =>
-    setType(() => ({
-      type: type === 'text' ? 'password' : 'text',
-    }));
+  const handleClick = () => setType(type === 'text' ? 'password' : 'text');
+
   useEffect(() => {
     // signOut();
 

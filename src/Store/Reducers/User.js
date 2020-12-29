@@ -11,17 +11,16 @@ const initialState = {
         photoURL: './img_from_xd/User.png',
         isPro: false,
         school: '',
-        profession: ' illustrator & Artist',
-        about: 'Hi, my name is Amelie. I am a photo artist and art director from Munich. Last year I was chosen to be one of the nine Adobe Creative Residents in 2019/2020.My pictures are widely known for their colorful, surrealistic touch. by books, lyrics and words in total, I am able to abstract and visualize them into new artworks.',
         schoolsEnrolled: [{
-            uid: "",
-            name: "",
-            coursesEnrolled: {
+            schoolId: "",
+            coursesEnrolled: [{
                 courseId: "",
                 stars:2,
-                finishedLessons: [true,false,false]
-            }
+                finishedLessons: ["",""]
+            }]
         }],
+        profession: ' illustrator & Artist',
+        about: 'Hi, my name is Amelie. I am a photo artist and art director from Munich. Last year I was chosen to be one of the nine Adobe Creative Residents in 2019/2020.My pictures are widely known for their colorful, surrealistic touch. by books, lyrics and words in total, I am able to abstract and visualize them into new artworks.',
         colors: {
             aboutStudent: '#FEF0EF',
             recomandCourses: '#EFEFF6'

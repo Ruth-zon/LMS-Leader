@@ -31,8 +31,8 @@ function CourseCards(props) {
     console.log(courses_algo)
     listItems.push(
       <>
-        <Col xs="12" md="6" xl="4">
-          <CourseCard key={i}  course={courses_algo[i]} />
+        <Col xs="12" md="6" xl="4"  key={i}>
+          <CourseCard  course={courses_algo[i]} />
         </Col>
       </>
     );

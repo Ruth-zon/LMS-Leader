@@ -80,10 +80,7 @@ export default withRouter(function Login(props) {
     }
   };
 
-  const handleClick = () =>
-    setType(() => ({
-      type: type === 'text' ? 'password' : 'text',
-    }));
+  const handleClick = () => setType(type === 'text' ? 'password' : 'text');
   useEffect(() => {
     // signOut();
     // document.cookie = 'jwt' + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;domain=.leader.codes';

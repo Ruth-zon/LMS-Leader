@@ -1,29 +1,31 @@
-import React, { useContext } from 'react';
+import React, {useContext} from 'react';
 import './course.css';
-import { Row, Col, Container } from 'react-bootstrap';
+import {Row, Col, Container} from 'react-bootstrap';
 import {
   FaRegStar,
   FaRegEye,
   FaRegPlayCircle,
   FaRegClock,
 } from 'react-icons/all';
-import { UserContext } from '../../login/userProvider';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-
+import {UserContext} from '../../login/userProvider';
+import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 
 function mapStateToProps(state) {
   return {
-    course: state.currentCourseReducer.currentCourse
-
+    course: state.courseReducer.course,
   };
 }
+
+const mapDispatchToProps = (dispatch) => ({
+});
+
 export default connect(
   mapStateToProps,
-
+  mapDispatchToProps
 )(function Header(props) {
   // const user = useContext(UserContext);
-  console.log(props)
+  console.log(props);
   return (
     <>
       <div className="header">
@@ -32,24 +34,24 @@ export default connect(
             your own course - you may edit it
               <Link to={'/editcourse/' + props.data.id}> here</Link>
           </p> */}
-          <h1>{props.name}</h1>
+          <h1>{props.course.name}</h1>
           <br />
           <div className={props.view ? 'header-view' : ''}>
             <h3>
               {/* Learn graphic design today with Photoshop, Illustrator, Adobe
                   XD, InDesign & more in this Adobe CC Masterclass! */}
-              {props.subtitle}
+              {props.course.subtitle}
             </h3>
             <Container>
               <Row>
                 <Col xs="3">
                   <FaRegStar color="#F3B23A" />
-                  {props.stars}
+                  {props.course.stars}
                 </Col>
                 <Col xs="3">
                   <FaRegEye color="#DB4500" />
                   {/* {props.data.views} */}
-                  Enrolled 45 students
+                  Enrolled {props.course.students} students
                 </Col>
                 <Col xs="3">
                   <FaRegClock />
@@ -57,7 +59,7 @@ export default connect(
                 </Col>
                 <Col xs="3">
                   <FaRegPlayCircle color="#3E9365" />
-                  {props.lesion + ' '} Lessons
+                  {props.course.lessons.length} Lessons
                 </Col>
               </Row>
             </Container>
@@ -66,5 +68,4 @@ export default connect(
       </div>
     </>
   );
-}
-)
+});

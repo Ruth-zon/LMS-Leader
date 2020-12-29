@@ -55,7 +55,7 @@ export default connect(
             >
               {props.school.partners.map((item, key) => {
                 return (
-                  <div className="image-our-partner">
+                  <div className="image-our-partner" key={key}>
                     <Image src={item} thumbnail />
                   </div>
                 );

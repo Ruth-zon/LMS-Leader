@@ -19,7 +19,6 @@ export default connect(
   return (
     <>
       <header>
-
         <Container>
           <Row>
             <Col className="middle" md="6">
@@ -41,7 +40,7 @@ export default connect(
                       id="basic-addon2"
                     style={{ backgroundColor: props.school.colors.searchbar }}
                     >
-                      <FaSearch color="f56962" />
+                      <FaSearch color="white" />
                     </InputGroup.Text>
                   </InputGroup.Append>
                 </InputGroup>

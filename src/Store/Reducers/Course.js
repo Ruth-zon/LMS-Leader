@@ -152,7 +152,7 @@ const mycourse = {
   //     state.course=Courses[action.payload - 1]
   // },
   initialCourse(state, action) {
-    state.course = action.payload;
+    state.course =  action.payload;
   },
   initialEmptyCourse(state) {
     state.course = initialState.course;

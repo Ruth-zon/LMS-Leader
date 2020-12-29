@@ -43,7 +43,7 @@ function RowLearning(props) {
   for (var i = 0; i < props.data.school.learning.info.length; i++) {
     let x = i;
     rows.push(
-      <div>
+      <div key={x}>
 
         <span>
           <p>{props.data.school.learning.info[i].id}</p>

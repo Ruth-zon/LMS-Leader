@@ -24,7 +24,12 @@ export const getCookie = (c_name) => {
   return '';
 };
 
-const usernameCheck = (setUserProps, getAllForUser, uid) => {
+const usernameCheck = (
+  setUserProps,
+  getAllForUser,
+  uid,
+  addStudentToSchool
+) => {
   const jwt = getCookie('jwt');
   // let jwt =
   // 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJ3ZGtwNUQyaFJPYzRYSmJCY3FkdzlDOUM3T3gyIiwiZW1haWwiOiJydXRoem9uQGxlYWRlci5jb2RlcyIsImlwIjoiMTk1LjYwLjIzNS4xNDEiLCJpYXQiOjE2MDU3ODA2MDh9.StX-QtG8q4z2JvJ4VFMZQn2PYkb0vqo00Vbmn0GNlFU';
@@ -95,11 +100,14 @@ const usernameCheck = (setUserProps, getAllForUser, uid) => {
         setUserProps({userName: value});
         getAllForUser(value);
         // if (history.state.state!="undefined"&&history.state.state.from!="") {
-        let from = localStorage.getItem('from');
-        if (from) {
+        let school = localStorage.getItem('school');
+        let back = localStorage.getItem('back');
+        if (back == true && school != 'undefined' && school != undefined) {
           localStorage.setItem('sid', uid);
-          history.push('/' + from);
+          addStudentToSchool({uid: uid, school: school});
+          history.push('/view/' + school);
         } else history.push('/' + value);
+        localStorage.removeItem('back');
 
         // history.push(history.state.state.from)
 
@@ -111,6 +119,7 @@ const usernameCheck = (setUserProps, getAllForUser, uid) => {
 const mapDispatchToProps = (dispatch) => ({
   setUserProps: (data) => dispatch(actions.setUserProps(data)),
   getAllForUser: (data) => dispatch(actions.getAllForUser(data)),
+  addStudentToSchool: (data) => dispatch(actions.addStudentToSchool(data)),
 });
 
 function mapStateToProps(state) {
@@ -180,7 +189,8 @@ class Wizard extends Component {
                     usernameCheck(
                       this.props.setUserProps,
                       this.props.getAllForUser,
-                      this.props.user.uid
+                      this.props.user.uid,
+                      this.props.addStudentToSchool
                     )
                   }
                 >

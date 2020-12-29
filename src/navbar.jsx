@@ -1,6 +1,7 @@
 // import './courseConfig/node_modules/bootstrap/dist/css/bootstrap.min.css';
 import {FaSearch, FaShoppingCart, FaComment} from 'react-icons/all';
 import React, {useContext} from 'react';
+import {connect} from 'react-redux';
 import './ViewComponents/homepage/App.css';
 import {
   Button,
@@ -17,23 +18,38 @@ import history from './history';
 // const history = createHashHistory();
 // const browserHistory = createBrowserHistory();
 
-function Navigation() {
-  const user = useContext(UserContext);
+function mapStateToProps(state) {
+  return {
+    user: state.userReducer.user,
+  };
+}
+export default connect(
+  mapStateToProps,
+  null
+)(function Navigation(props) {
+  const user = props.user;
+  // const user = useContext(UserContext);
   // const {photoURL, displayName, email} = user;
   // const navigate=() =>{
   //   // browserHistory.replace('/courses/:'+JSON.stringify( data));
   //   browserHistory.replace('/login');
   //   window.location.reload();
   // }
-  const nav=()=>{
-    history.push({
-      pathname: '/login',
-      // state: {
-      //   from: history.location.pathname,
-      // },
-    });
-    localStorage.setItem("from",history.location.pathname)
-  }
+  const nav = (data) => {
+    // history.push({
+    //   pathname: '/login',
+    //   // state: {
+    //   //   from: history.location.pathname,
+    //   // },
+    // });
+    var url = window.location;
+    var school = decodeURI(url.pathname.split('/')[2]);
+    // const urlParams = new URLSearchParams(window.location.search);
+    // let school = urlParams.get('school');
+    localStorage.setItem('school', school);
+    localStorage.setItem('back', true);
+    history.push('/login');
+  };
   return (
     <>
       <Navbar>
@@ -119,31 +135,30 @@ function Navigation() {
           <NavItem>
             <FaShoppingCart color="#707070" />
           </NavItem>
-          {user === undefined && (
+          {user.uid==='0' && (
             <Button
               variant="outline-primary"
               className="register"
-              onClick={nav}
+              onClick={() => nav(props)}
             >
               Register
             </Button>
           )}
-          {user !== null && user !== undefined && (
+          {user.uid !== undefined && user.uid !== '0' && (
             <>
               <div className="user-nav"></div>
               <Image className="user-img" src={user.photoURL} />
               {/* <span>{user.displayName}</span> */}
 
               <NavDropdown
-                title={user.displayName.split(' ')[0]}
+                title={user.userName}
                 id="basic-nav-dropdown"
               >
-                <NavDropdown.Item href="/editcourse/0">
+                <NavDropdown.Item >
                   New course
                 </NavDropdown.Item>
-                <NavDropdown.Item href="">View my courses</NavDropdown.Item>
+                <NavDropdown.Item >View my courses</NavDropdown.Item>
                 <NavDropdown.Item
-                  href="login"
                   onClick={() => {
                     signOut();
                   }}
@@ -167,5 +182,5 @@ function Navigation() {
       </Navbar>
     </>
   );
-}
-export default Navigation;
+});
+// export default Navigation;
