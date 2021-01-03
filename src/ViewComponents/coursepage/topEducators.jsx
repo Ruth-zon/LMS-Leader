@@ -1,135 +1,154 @@
-import {
-  FaArrowLeft,
-  FaArrowRight,
-} from 'react-icons/all';
+import {FaArrowLeft, FaArrowRight} from 'react-icons/all';
 // import '../courseConfig/node_modules/bootstrap/dist/css/bootstrap.min.css';
 // import {CourseCard, FirstRowCourse, SecondRowCourse} from './homepage/Courses';
 import React, {Component} from 'react';
-import {
-  Card,
-  CardDeck,
-  Image,
-  Carousel,
-} from 'react-bootstrap';
+import {Button, Card, CardDeck, Image} from 'react-bootstrap';
 import '../homepage/App.css';
 import './course.css';
-// impore './'
-class TopEducators extends Component {
-  // state = {arr: []};
-  // componentDidMount() {
-  //   let url = 'http://localhost:8000/students/';
-  //   fetch(url)
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       console.log(data);
-  //       this.setState({arr: data.students});
-  //     });
-  // }
-  state = {
-    arr: [
-      {
-        bg: './img_from_xd/path 65.svg',
-        image: './img_from_xd/image 61.png',
-        header: 'Pass above Rs 250.',
-        content: 'Avail 10% off on Testbook',
-        color: '#DF4161',
-        discount: '10',
-      },
-      {
-        bg: './img_from_xd/path 65-1.svg',
-        image: './img_from_xd/image 62.png',
-        header: 'Productivity Course a',
-        content: 'The Complete Personal',
-        color: '#64929F',
-        discount: '58',
-      },
-      {
-        bg: './img_from_xd/path 65-1.svg',
-        image: './img_from_xd/image 63.png',
-        header: 'Up To 58% Off',
-        content: 'Get 12-Month Subscription',
-        color: '#B3A092',
-        discount: '50',
-      },
-    ],
-  };
-  render() {
-    const prev = (
-      // <button onClick={dispatchDiscreteEvent} className="carousel-left">
-      <button className="carousel-left">
-        <FaArrowLeft />
-      </button>
-    );
-    const next = (
-      <button className="carousel-right">
-        <FaArrowRight />
-      </button>
-    );
-    return (
+import {connect} from 'react-redux';
+import Carousel from 'react-elastic-carousel';
+import '../../ConfigComponents/HomePage/carousel.css';
 
-      <section id="top">
-        <div className=" row justify-content-around">
-          <h3 className="">Top Education offers and deals are listed here</h3>
-          <button className="btn-view">View all</button>
-        </div>
-        <Carousel
-          autoPlay={false}
-          nextIcon={next}
-          prevIcon={prev}
-          data-interval="false"
+// impore './'
+
+function mapStateToProps(state) {
+  return {
+    course: state.courseReducer.course,
+  };
+}
+
+const mapDispatchToProps = (dispatch) => ({});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(
+  class TopEducators extends Component {
+    constructor() {
+      super();
+      this.breakPoints = [
+        {width: 1, itemsToShow: 1},
+        {width: 350, itemsToShow: 2},
+        {width: 700, itemsToShow: 3},
+      ];
+    }
+    render() {
+      const prev = (
+        // <button onClick={dispatchDiscreteEvent} className="carousel-left">
+        <button className="carousel-left">
+          <FaArrowLeft />
+        </button>
+      );
+      const next = (
+        <button className="carousel-right">
+          <FaArrowRight />
+        </button>
+      );
+      return (
+        <section
+          id="top"
+          style={{
+            backgroundColor: this.props.course.colors.top_educators,
+            color: this.props.course.colors.fontButton,
+          }}
         >
-          <Carousel.Item>
-            <CardDeck>
-              {/* <RowTests props={this.state.arr} /> */}
-              {this.state.arr.map((item) => {
-                return (
-                  <>
-                    <Card className="top-card">
-                      {/* <Card.ImgOverlay >
-                          <Image src={item.bg}></Image>
-                        </Card.ImgOverlay> */}
-                      <Card.Body>
-                        <Image src={item.image}></Image>
-                        <Card.Text>{item.header} </Card.Text>
-                        <Card.Title>
-                          {/* <img src={item.content} alt="Student"></img> */}
-                          {item.content}
-                        </Card.Title>
-                        <div
-                          style={{backgroundColor: item.color}}
-                          className="discount"
-                        >
-                          Total Discount <br />
-                          <h6>{item.discount}%</h6>
-                        </div>
-                      </Card.Body>
-                    </Card>
-                  </>
-                );
-              })}
-            </CardDeck>
-          </Carousel.Item>
-          {/*<Carousel.Item>
-            <CardDeck>
-              {this.state.arr.map((item) => {
-                return (
-                  <Card className="test-card">
+          <div className=" row justify-content-around">
+            <h3 className="">Top Education offers and deals are listed here</h3>
+            <button
+              style={{
+                backgroundColor: this.props.course.colors.button,
+                borderColor: this.props.course.colors.fontButton,
+              }}
+              className="btn-view"
+            >
+              View all
+            </button>
+          </div>
+          <Carousel
+            breakPoints={this.breakPoints}
+            itemPadding={[0, 20]}
+            className="content"
+            ref={(ref) => (this.carousel = ref)}
+            renderPagination={({pages, activePage, onClick}) => {
+              return (
+                <span direction="row" className="paging-scroll">
+                  {pages.map((page) => {
+                    const isActivePage = activePage === page;
+                    return (
+                      <span
+                        className="paging-button"
+                        key={page}
+                        onClick={() => onClick(page)}
+                        active={isActivePage}
+                      />
+                    );
+                  })}
+                </span>
+              );
+            }}
+          >
+            {this.props.course.top_educators.map((item, key) => {
+              return (
+                <>
+                  <Card
+                    key={key}
+                    className="top-card hover-config"
+                    onClick={() =>
+                      this.props.setSectionConfig({
+                        name: 'course_top_educators_x',
+                        id: key,
+                      })
+                    }
+                  >
                     <Card.Body>
+                      <Image src={item.image}></Image>
+                      <Card.Text>{item.header}</Card.Text>
                       <Card.Title>
-                        <img src={item.image} alt="Student"></img>
-                        {item.name}
+                        {/* <img src={item.content} alt="Student"></img> */}
+                        {item.content}
                       </Card.Title>
-                      <Card.Text>{item.description} </Card.Text>
+                      <div
+                        style={{backgroundColor: item.color}}
+                        className="discount"
+                      >
+                        Total Discount <br />
+                        <h6>{item.discount}%</h6>
+                      </div>
                     </Card.Body>
                   </Card>
-                );
-              })}
-              {/* <RowTests props={this.state.arr} /> 
-            </CardDeck>
-          </Carousel.Item> */}
-        </Carousel>
-      </section>
-    );
+                </>
+              );
+            })}
+          </Carousel>
+          <div className="content mt--42">
+            <Button
+              variant="light"
+              onClick={() => {
+                this.carousel.slidePrev();
+              }}
+              className="carousel-left"
+            >
+              <FaArrowLeft />
+            </Button>
+            <Button
+              variant="light"
+              onClick={() => {
+                if (
+                  this.props.course.top_educators.length -
+                    this.carousel.state.firstItem -
+                    this.carousel.state.pages.length >
+                  0
+                )
+                  this.carousel.slideNext();
+              }}
+              className="carousel-right"
+            >
+              <FaArrowRight />
+            </Button>
+          </div>
+        </section>
+      );
+    }
   }
-}
-export default TopEducators;
+);
+// export default TopEducators;

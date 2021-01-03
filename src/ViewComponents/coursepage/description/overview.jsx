@@ -1,6 +1,12 @@
 import React, {Component} from 'react';
 import '../course.css';
+import {connect} from 'react-redux';
 
+function mapStateToProps(state) {
+  return {
+    course: state.courseReducer.course,
+  };
+}
 class Overview extends Component {
   constructor() {
     super();
@@ -10,7 +16,7 @@ class Overview extends Component {
   }
 
   render() {
-    let data = this.props.data.description;
+    let data = this.props.course.description;
     // console.log(this.props.data.description);
     // console.log(JSON.parse(this.props.data.description));
     console.log(data);
@@ -31,4 +37,4 @@ class Overview extends Component {
   }
 }
 
-export default Overview;
+export default  connect(mapStateToProps, null)(Overview);

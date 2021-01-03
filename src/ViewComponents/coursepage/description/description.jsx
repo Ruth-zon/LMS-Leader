@@ -6,7 +6,19 @@ import Reviews from './reviews';
 import Instructor from './instructor';
 import {Button} from 'react-bootstrap';
 import '../course.css';
+import { connect } from 'react-redux';
 
+
+function mapStateToProps(state) {
+  return {
+    course: state.courseReducer.course,
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  null
+)(
 class Description extends Component {
   constructor() {
     super();
@@ -87,6 +99,6 @@ class Description extends Component {
       </div>
     );
   }
-}
+});
 
-export default Description;
+// export default Description;

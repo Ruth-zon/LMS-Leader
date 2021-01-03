@@ -27,7 +27,6 @@ import {
   Link,
   Redirect,
 } from 'react-router-dom';
-import ViewCoursePage from './ViewComponents/coursepage/LessonPage';
 // import CoursePage from './ViewComponents/CoursePage';
 // import LessonPage from './courseConfig/LessonPage';
 import Login from './login/login';
@@ -35,7 +34,6 @@ import {createHashHistory} from 'history';
 import {createBrowserHistory} from 'history';
 import Register from './login/register';
 import AddCoursePage from './ConfigComponents/AddCoursePage';
-import LessonPage from './ViewComponents/coursepage/LessonPage';
 import RouteConfig from './ConfigComponents/RouteConfig';
 import Help from './Help';
 import CoursePage from './ViewComponents/coursepage/CoursePage';

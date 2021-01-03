@@ -20,9 +20,7 @@ function mapStateToProps(state) {
     school: state.schoolReducer.school,
   };
 }
-const mapDispatchToProps = (dispatch) => ({
-  setSectionConfig: (name) => dispatch(actions.setSectionConfig(name)),
-});
+const mapDispatchToProps = (dispatch) => ({});
 export default connect(
   mapStateToProps,
   mapDispatchToProps
@@ -68,7 +66,9 @@ export default connect(
                   {col.array.map((value, key) => {
                     return (
                       <li key={key}>
-                        <a target="_blank" href={col.links[key]}>{value}</a>
+                        <a target="_blank" href={col.links[key]}>
+                          {value}
+                        </a>
                       </li>
                     );
                   })}
@@ -161,12 +161,7 @@ export default connect(
             </ul>
           </Col> */}
         </Row>
-        <Row
-          onClick={(e) => {
-            props.setSectionConfig({name: 'footer'});
-          }}
-          className="hover-config text-center text-xs-center text-sm-left text-md-left"
-        >
+        <Row className="text-center text-xs-center text-sm-left text-md-left">
           <Col xs="12" sm="12" md="12" mt="2">
             <div className="all-right">
               {props.school.footerBottom.text}
@@ -188,26 +183,6 @@ export default connect(
                     );
                   }
                 )}
-                {/* <li className="list-inline-item">
-                  <a href="">
-                    <FaFacebook />
-                  </a>
-                </li>
-                <li className="list-inline-item">
-                  <a href="">
-                    <FaTwitter />
-                  </a>
-                </li>
-                <li className="list-inline-item">
-                  <a href="">
-                    <FaGoogle />
-                  </a>
-                </li>
-                <li className="list-inline-item">
-                  <a href="">
-                    <FaLinkedin />
-                  </a>
-                </li> */}
               </ul>
             </div>
           </Col>
