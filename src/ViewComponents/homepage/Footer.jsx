@@ -54,15 +54,7 @@ export default connect(
     // for
   };
   return (
-    <section
-      id="footer"
-      onClick={(e) => {
-        if (e.target === e.currentTarget)
-          props.setSectionConfig({name: 'footer'});
-      }}
-      className="hover-config"
-      style={{backgroundColor: props.school.colors.footer}}
-    >
+    <section id="footer" style={{backgroundColor: props.school.colors.footer}}>
       <Container>
         <Row
           text="center"
@@ -70,26 +62,13 @@ export default connect(
         >
           {props.school.footer.map((col, key) => {
             return (
-              <Col
-              key="key"
-                xs="12"
-                sm="6"
-                md="3"
-                onClick={() =>
-                  props.setSectionConfig({name: 'footer-col', id: key})
-                }
-                className="hover-config"
-              >
+              <Col key="key" xs="12" sm="6" md="3">
                 <h5>{col.name}</h5>
                 <ul className="list-unstyled quick-links">
                   {col.array.map((value, key) => {
                     return (
                       <li key={key}>
-                        <a 
-                        // onClick={() => history.push(col.links[key])}
-                        >
-                          {value}
-                        </a>
+                        <a target="_blank" href={col.links[key]}>{value}</a>
                       </li>
                     );
                   })}
@@ -193,12 +172,12 @@ export default connect(
               {props.school.footerBottom.text}
               <ul className="list-unstyled list-inline social text-center">
                 {Object.entries(props.school.footerBottom.share).map(
-                  (share,key) => {
+                  (share, key) => {
                     return (
                       <>
                         {props.school.footerBottom.show[share[0]] && (
                           <li className="list-inline-item" key={key}>
-                            <a 
+                            <a
                             // onClick={() => history.push(share[1])}
                             >
                               {iconShare(share[0])}

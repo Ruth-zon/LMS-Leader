@@ -1,10 +1,10 @@
-import React, { Component, useState } from 'react';
-import { Button, Row } from 'react-bootstrap';
-import { connect } from 'react-redux';
-import { useParams, useRouteMatch, withRouter } from 'react-router-dom';
-import { actions } from '../../Store/actions';
+import React, {Component, useState} from 'react';
+import {Button, Row} from 'react-bootstrap';
+import {connect} from 'react-redux';
+import {useParams, useRouteMatch, withRouter} from 'react-router-dom';
+import {actions} from '../../Store/actions';
 import '../configurator.css';
-import { FaAngleDown, FaAngleRight, FaPlus } from 'react-icons/all';
+import {FaAngleDown, FaAngleRight, FaCopy, FaPlus} from 'react-icons/all';
 import $ from 'jquery';
 import {
   ConfigCategories,
@@ -22,7 +22,7 @@ import {
   ConfigFooterCol,
   ConfigFooter,
   SchoolButtons,
-  SchoolFontButtons
+  SchoolFontButtons,
 } from './HomeConfigSections';
 // const browserHistory = createBrowserHistory();
 
@@ -65,7 +65,7 @@ const mapDispatchToProps = (dispatch) => ({
   setWorldSelection: (name) => dispatch(actions.setWorldSelection(name)),
   setChoiceFavorite: (name) => dispatch(actions.setChoiceFavorite(name)),
 
-  // 
+  //
 });
 
 export default withRouter(
@@ -73,18 +73,14 @@ export default withRouter(
     mapStateToProps,
     mapDispatchToProps
   )(function HomeConfig(props) {
+    const [copy, showCopy] = useState(false);
     let match = useRouteMatch();
-    let { name } = useParams();
-    let { history } = props;
+    let {name} = useParams();
+    let {history} = props;
     const addCourse = () => {
       props.initialEmptyCourse();
       history.push('/' + name + '/addCourse');
       // window.location.reload();
-    };
-    const [choose, setChoose] = useState(0);
-    const handleChoose = (click) => {
-      if (choose === click) setChoose(0);
-      else setChoose(click);
     };
     const handleSave = () => {
       props.addSchoolToServer(props.school);
@@ -92,6 +88,17 @@ export default withRouter(
       // window.location.reload();
       // $.ajax()
     };
+    const handleCopy = () => {
+      navigator.clipboard.writeText(
+        'https://lms.leader.codes/view/' + props.school._id
+      );
+      showCopy(true);
+      setTimeout(function () {
+        showCopy(false);
+      }, 2000);
+      // showCopy(false);
+    };
+
     const switchConfigComponent = (name, id) => {
       switch (name) {
         case 'header':
@@ -123,7 +130,6 @@ export default withRouter(
               show={props.showSchoolByPart}
               data={props}
               function={props.setChoiceFavorite}
-
             />
           );
         case 'getChoice':
@@ -186,26 +192,193 @@ export default withRouter(
         case 'footer-col':
           return <ConfigFooterCol col={id} data={props} />;
         case 'school_buttons':
-          return <SchoolButtons school={props.school} color={props.setColorSchoolByPart} />
-      
+          return (
+            <SchoolButtons
+              school={props.school}
+              color={props.setColorSchoolByPart}
+            />
+          );
+
         default:
           return 'Click any object on the page to change its settings';
       }
     };
+    let choose = props.styles.section_config.name;
     return (
       <>
         <div className="config">
-          <button onClick={() => addCourse()} data-toggle="tooltip" data-placement="top" title="Add coursre">
+          <button
+            onClick={() => addCourse()}
+            data-toggle="tooltip"
+            data-placement="top"
+            title="Add coursre"
+          >
             Add Course <FaPlus />
           </button>
           <br />
+          <button
+            onClick={() => {
+              choose === 'general'
+                ? props.setSectionConfig({name: ''})
+                : props.setSectionConfig({name: 'general'});
+            }}
+          >
+            General settings
+            {choose === 'general' ? <FaAngleDown /> : <FaAngleRight />}
+          </button>
+          <div className={choose === 'general' ? 'display' : 'cover'}>
+            {!copy && <FaCopy onClick={handleCopy} />}
+            {copy && <span id="copy-span">copied!</span>}
+            <div>
+              Link to school
+              <textarea
+                disabled
+                value={'https://lms.leader.codes/view/' + props.school._id}
+              />
+            </div>
+            <div>
+              Background color of all the buttons
+              <input
+                type="color"
+                value={props.school.colors.buttons}
+                onChange={(e) =>
+                  props.setColorSchoolByPart([e.target.value, 'button'])
+                }
+              />
+            </div>
+            <h5>Show sections</h5>
+            <div>
+              Categories
+              <label
+                className="switch"
+                data-toggle="tooltip"
+                data-placement="top"
+                title="Hide/show categories"
+              >
+                <input
+                  type="checkbox"
+                  onClick={(e) => props.showSchoolByPart('categories')}
+                  checked={props.school.show.categories}
+                />
+                <span className="slider round"></span>
+              </label>
+            </div>
+            <div>
+              Get choice - courses
+              <label
+                className="switch"
+                data-toggle="tooltip"
+                data-placement="top"
+                title="Hide/show this section"
+              >
+                <input
+                  type="checkbox"
+                  onClick={(e) => props.showSchoolByPart('getChoice')}
+                  checked={props.school.show.getChoice}
+                />
+                <span className="slider round"></span>
+              </label>
+            </div>
+            <div>
+              Learning platform
+              <label
+                className="switch"
+                data-toggle="tooltip"
+                data-placement="top"
+                title="Hide/show this section"
+              >
+                <input
+                  type="checkbox"
+                  onClick={(e) => props.showSchoolByPart('learning')}
+                  checked={props.school.show.learning}
+                />
+                <span className="slider round"></span>
+              </label>
+            </div>
+            <div>
+              World selection - courses
+              <label
+                className="switch"
+                data-toggle="tooltip"
+                data-placement="top"
+                title="Hide/show this section"
+              >
+                <input
+                  type="checkbox"
+                  onClick={(e) => props.showSchoolByPart('worldSelection')}
+                  checked={props.school.show.worldSelection}
+                />
+                <span className="slider round"></span>
+              </label>
+            </div>
+            <div>
+              A quote
+              <label
+                className="switch"
+                data-toggle="tooltip"
+                data-placement="top"
+                title="Hide/show this section"
+              >
+                <input
+                  type="checkbox"
+                  onClick={(e) => props.showSchoolByPart('CTA')}
+                  checked={props.school.show.CTA}
+                />
+                <span className="slider round"></span>
+              </label>
+            </div>
+            <div>
+              Testimoinal
+              <label
+                className="switch"
+                data-toggle="tooltip"
+                data-placement="top"
+                title="Hide/show this section"
+              >
+                <input
+                  type="checkbox"
+                  onClick={(e) => props.showSchoolByPart('testimoinal')}
+                  checked={props.school.show.testimoinal}
+                />
+                <span className="slider round"></span>
+              </label>
+            </div>
+            <div>
+              Partners
+              <label
+                className="switch"
+                data-toggle="tooltip"
+                data-placement="top"
+                title="Hide/show this section"
+              >
+                <input
+                  type="checkbox"
+                  onClick={(e) => props.showSchoolByPart('partners')}
+                  checked={props.school.show.partners}
+                />
+                <span className="slider round"></span>
+              </label>
+            </div>
+            <div>
+              Footer
+              <label className="switch">
+                <input
+                  type="checkbox"
+                  onClick={(e) => props.showSchoolByPart('footer')}
+                  checked={props.school.show.footer}
+                />
+                <span className="slider round"></span>
+              </label>
+            </div>
+          </div>
           {/* <h5>{props.styles.section_config.name}</h5> */}
           <br />
-          {switchConfigComponent(
-            props.styles.section_config.name,
-            props.styles.section_config.id
-          )}
-
+          <div className={choose === 'general' ? 'cover' : 'display'}>
+            {switchConfigComponent(
+              props.styles.section_config.name,
+              props.styles.section_config.id
+            )}
+          </div>
           <div id="bottom_configurtor">
             <Button variant="primary" onClick={handleSave}>
               Save school

@@ -4,7 +4,7 @@ import '../../ViewComponents/homepage/App.css';
 import GetChoice from './GetCoice.jsx';
 import WorldSelectionCourse from './WorldSelectionCourse';
 import Navigation from '../../navbar.jsx';
-import Header from './Header.jsx';
+import Header from './Header';
 import Categories from './Categories';
 import LearningPlatform from './LearningPlatform';
 import CTA from './CTA';

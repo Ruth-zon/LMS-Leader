@@ -73,7 +73,6 @@ export default connect(
             <>
               <Card.Title className="price">
                   Price: 
-       
                 <input
                   value={course.price}
                   onChange={(e) => setPrice(e.target.value)}
@@ -174,11 +173,11 @@ export default connect(
               )}*/}
             </ListGroup.Item>
 
-            <ListGroup.Item>
+            {/* <ListGroup.Item>
               <h6>Training 5 or more people?</h6>Get your team access to 3500+
               top courses anytime.
               <span className=" card-text"> Contact our sale</span>
-            </ListGroup.Item>
+            </ListGroup.Item> */}
             <ListGroup.Item
               onClick={(e) => {
                 setSectionConfig({ name: 'buy_course_share' });

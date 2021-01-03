@@ -5,6 +5,7 @@ import { Container, Row, Col, InputGroup, FormControl } from 'react-bootstrap';
 import '../../ViewComponents/homepage/App.css';
 import { actions } from '../../Store/actions';
 import { connect } from 'react-redux';
+import history from '../../history';
 // import '../configurator.css';
 // import { handleImage } from '../handleImage';
 
@@ -37,6 +38,7 @@ export default connect(
                   />
                   <InputGroup.Append>
                     <InputGroup.Text
+                    onClick={()=>history.push('view/'+props.school.name+'/search')}
                       id="basic-addon2"
                     style={{ backgroundColor: props.school.colors.searchbar }}
                     >

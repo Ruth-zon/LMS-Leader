@@ -25,7 +25,6 @@ export default connect(
   mapDispatchToProps
 )(function Header(props) {
   // const user = useContext(UserContext);
-  console.log(props);
   return (
     <>
       <div className="header">
@@ -46,7 +45,7 @@ export default connect(
               <Row>
                 <Col xs="3">
                   <FaRegStar color="#F3B23A" />
-                  {props.course.stars}
+                  {props.course.stars} stars
                 </Col>
                 <Col xs="3">
                   <FaRegEye color="#DB4500" />

@@ -453,3 +453,8 @@ header textarea {
   width: 80px;
   color: #f68c20;
 }
+#copy-span{
+  color: #ffffff;
+  background-color: #27aa32e3;
+  float: right;
+}

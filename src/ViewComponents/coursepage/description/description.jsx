@@ -47,30 +47,43 @@ class Description extends Component {
     const {choose} = this.state;
     return (
       <div className="description content">
+        <div>
+          <button
+            className={this.state.choose === 1 ? 'btn-choose' : 'btn'}
+            onClick={() => this.chooseComponent('choose1')}
+          >
+            Overview
+          </button>
+          <button
+            className={this.state.choose === 2 ? 'btn-choose' : 'btn'}
+            onClick={() => this.chooseComponent('choose2')}
+          >
+            Curriculum
+          </button>
+          {this.props.course.show.instructor && (
+            <button
+              className={this.state.choose === 3 ? 'btn-choose' : 'btn'}
+              onClick={() => this.chooseComponent('choose3')}
+            >
+              Instructor
+            </button>
+          )}
+          {this.props.course.show.reviews && (
+            <button
+              className={this.state.choose === 4 ? 'btn-choose' : 'btn'}
+              onClick={() => this.chooseComponent('choose4')}
+            >
+              Reviews
+            </button>
+          )}
+        </div>
+        <br />
+        {choose === 1 && <Overview/>}
+        {choose === 2 && <Curriculum />}
+        {choose === 3 &&  this.props.course.show.instructor&&<Instructor />}
+        {choose === 4 &&  this.props.course.show.reviews &&<Reviews />}
 
-              <div>
-                <button className={this.state.choose===1?'btn-choose':'btn'} onClick={() => this.chooseComponent('choose1')}>
-                  Overview
-                </button>
-                <button className={this.state.choose===2?'btn-choose':'btn'} onClick={() => this.chooseComponent('choose2')}>
-                  Curriculum
-                </button>
-                
-                <button className={this.state.choose===3?'btn-choose':'btn'} onClick={() => this.chooseComponent('choose3')}>
-                  Instructor
-                </button>
-                
-                <button className={this.state.choose===4?'btn-choose':'btn'} onClick={() => this.chooseComponent('choose4')}>
-                  Reviews
-                </button>
-              </div>
-              <br />
-              {choose === 1 && <Overview data={this.props.data}/>}
-              {choose === 2 && <Curriculum />}
-              {choose === 3 && <Instructor />}
-              {choose === 4 && <Reviews />}
-
-              <br />
+        <br />
       </div>
     );
   }

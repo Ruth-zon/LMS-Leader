@@ -148,12 +148,13 @@ export default connect(
             <>
               <div className="user-nav"></div>
               <Image className="user-img" src={user.photoURL} />
-              {/* <span>{user.displayName}</span> */}
+              {/* <span>{user.userName || user.username}</span> */}
 
               <NavDropdown
-                title={user.userName}
+                title={user.userName || user.username}
                 id="basic-nav-dropdown"
               >
+               { user.userName || user.username}
                 <NavDropdown.Item >
                   New course
                 </NavDropdown.Item>

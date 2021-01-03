@@ -10,7 +10,7 @@ import LearningPlatform from './LearningPlatform';
 import CTACopy from './CTA';
 import Testimoinal from './Testimoinal';
 import OurPartner from './OurPartner';
-import Footer from '../Footer';
+import Footer from './Footer';
 
 import {
   Categories as ctgs,

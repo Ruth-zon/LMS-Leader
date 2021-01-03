@@ -17,23 +17,14 @@ class Overview extends Component {
     return (
       <>
         <div className="overview">
-          {/* {this.props.data.description.Certification} */}
-          {/* {data}
-          {data.map((item, key) => {
+          {data.map((value, key) => {
             return (
               <>
-                <h5>{key}</h5>
-                <h6>{item}</h6>
-                <a>fads</a>
+                <h5>{value.header}</h5>
+                <h6>{value.text}</h6>
               </>
             );
-          })} */}
-          <h5>Course Description</h5>
-          <h6>{data['Course Description']}</h6>
-          <h5>Certification</h5>
-          <h6>{data.Certification}</h6>
-          <h5>Who this course is for</h5>
-          <h6>{data['Who this course is for']}</h6>
+          })}
         </div>
       </>
     );

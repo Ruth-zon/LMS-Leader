@@ -1,9 +1,24 @@
 import React, {Component} from 'react';
 import {Col, Row, Container, Image} from 'react-bootstrap';
 import './course.css';
+import {connect} from 'react-redux';
 
+function mapStateToProps(state) {
+  return {
+    course: state.courseReducer.course,
+  };
+}
+
+const mapDispatchToProps = (dispatch) => ({
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(
 class Belive extends Component {
   render() {
+    let course=this.props.course;
     return (
       <>
         <div className="belive content">
@@ -12,19 +27,17 @@ class Belive extends Component {
               <Col md="6" >
                 <p>
                   <i className="IBelive">
-                    I believe in lifelong learning and Skillfy is a great place
-                    to learn from experts. I’ve learned a lot and recommend it
-                    to all my friends.
+                  {course.belive.text}
                   </i>
                   <br />
                   <br />
                   <br></br>
-                  <p className="p1 ">Riaz Surti | Hearthy Foods</p>
+                  <p className="p1 ">{course.belive.auther}</p>
                   
                 </p>
               </Col>
               <Col md="6">
-                <Image src="./img_from_xd/image 116.png"></Image>
+              <Image src={course.belive.image}></Image>
               </Col>
             </Row>
           </Container>
@@ -32,6 +45,6 @@ class Belive extends Component {
       </>
     );
   }
-}
+})
 
-export default Belive;
+// export default Belive;

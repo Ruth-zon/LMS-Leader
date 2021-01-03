@@ -159,7 +159,7 @@ export function ConfigCategory(props) {
 
 export function ConfigCategories(props) {
   let { data, id } = props;
-  const YOUR_API_KEY = 'AIzaSyCzgSJ33qliZxON6yFXjEpUudk2QsNTkBg';
+  // const YOUR_API_KEY = 'AIzaSyCzgSJ33qliZxON6yFXjEpUudk2QsNTkBg';
 	const [activeFontFamily, setActiveFontFamily] = useState("Open Sans");
   return (
 
@@ -587,7 +587,7 @@ export function ConfigTestimoinal(props) {
       </div>
       <div>
         Show this section
-        <label className="switch">
+        <label className="switch" data-toggle="tooltip" data-placement="top" title="Hide/show this section">
           <input
             type="checkbox"
             onClick={(e) => data.showSchoolByPart('testimoinal')}
@@ -696,7 +696,7 @@ export function ConfigPartner(props) {
       </div>
       <div>
         Show this section
-        <label className="switch">
+        <label className="switch" data-toggle="tooltip" data-placement="top" title="Hide/show this section">
           <input
             type="checkbox"
             onClick={(e) => data.showSchoolByPart('partners')}
