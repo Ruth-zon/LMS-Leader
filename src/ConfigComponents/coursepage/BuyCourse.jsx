@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import '../../ViewComponents/coursepage/course.css';
-import { Card, Col, Button, Image, ListGroup } from 'react-bootstrap';
-import { connect } from 'react-redux';
-import { actions } from '../../Store/actions';
-import { handleImage } from '../handleImage';
+import {Card, Col, Button, Image, ListGroup} from 'react-bootstrap';
+import {connect} from 'react-redux';
+import {actions} from '../../Store/actions';
+import {handleImage} from '../handleImage';
 
 const mapDispatchToProps = (dispatch) => ({
   setSectionConfig: (name) => dispatch(actions.setSectionConfig(name)),
@@ -13,7 +13,6 @@ const mapDispatchToProps = (dispatch) => ({
   setPrevPrice: (data) => dispatch(actions.setPrevPrice(data)),
   setCourseInfo: (name) => dispatch(actions.setCourseInfo(name)),
   changeFont: (e) => dispatch(actions.setTitleFont(e)),
-
 });
 
 function mapStateToProps(state) {
@@ -44,15 +43,15 @@ export default connect(
       className="buy-course shadow hover-config mt-5"
       onClick={(e) => {
         if (e.target === e.currentTarget)
-          setSectionConfig({ name: 'buy_course' });
+          setSectionConfig({name: 'buy_course'});
       }}
     >
       <Card
-        style={{ width: '18rem' }}
+        style={{width: '18rem'}}
         className="hover-config "
         onClick={(e) => {
           if (e.target === e.currentTarget)
-            setSectionConfig({ name: 'buy_course' });
+            setSectionConfig({name: 'buy_course'});
         }}
       >
         <div className="file-upload hover-img">
@@ -66,13 +65,17 @@ export default connect(
         <Card.Body
           onClick={(e) => {
             if (e.target === e.currentTarget)
-              setSectionConfig({ name: 'buy_course' });
+              setSectionConfig({name: 'buy_course'});
           }}
         >
           {course.show.price && (
-            <>
+            <div
+              onClick={(e) => {
+                setSectionConfig({name: 'buy_course'});
+              }}
+            >
               <Card.Title className="price">
-                  Price: 
+                Price:
                 <input
                   value={course.price}
                   onChange={(e) => setPrice(e.target.value)}
@@ -94,25 +97,31 @@ export default connect(
                     value={course.prev_price_time}
                     onChange={(e) => setPrevPriceTime(e.target.value)}
                   />
+                  {course.prev_price_type}
                   left at this price
                 </Card.Text>
               )}
-              <Button
-                variant="primary"
-                block
-                style={{ backgroundColor: props.course.colors.button, borderColor: props.course.colors.fontButton }}
-                onClick={(e) => {
-                  props.setSectionConfig({ name: 'course_buttons' });
-                }}
-              >
-                <p style={{ color: props.course.colors.fontButton }}> Buy Now</p>
-              </Button>
-            </>
+            </div>
           )}
+          <Button
+            variant="primary"
+            block
+            style={{
+              backgroundColor: props.course.colors.button,
+              borderColor: props.course.colors.fontButton,
+              color: props.course.colors.fontButton,
+            }}
+            onClick={(e) => {
+              props.setSectionConfig({name: 'course_buttons'});
+            }}
+          >
+            Enroll Now
+          </Button>
+
           <ListGroup className="card-list" variant="flush">
             <ListGroup.Item
               onClick={(e) => {
-                setSectionConfig({ name: 'buy_course_info' });
+                setSectionConfig({name: 'buy_course_info'});
               }}
               className="hover-config"
             >
@@ -180,7 +189,7 @@ export default connect(
             </ListGroup.Item> */}
             <ListGroup.Item
               onClick={(e) => {
-                setSectionConfig({ name: 'buy_course_share' });
+                setSectionConfig({name: 'buy_course_share'});
               }}
               className="pointer hover-config"
             >

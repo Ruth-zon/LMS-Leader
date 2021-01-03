@@ -20,9 +20,10 @@ const initialState = {
       name: 'Name of the lecturer',
       img: './img_from_xd/Rectangle 22.png'
     },
-    price: '',
-    prev_price: 'prev price',
-    prev_price_time: '11 hours',
+    price: 0,
+    prev_price: 0,
+    prev_price_time: 11,
+    prev_price_type: 'hours',
     date_created: '',
     // language: 'Course language',
     // use: 'Use on desktop, tablet & mobile',
@@ -195,6 +196,9 @@ const mycourse = {
   },
   setPrevPriceTime(state, action) {
     state.course.prev_price_time = action.payload;
+  },
+  setPrevPriceType(state, action) {
+    state.course.prev_price_type = action.payload;
   },
   setDescription(state, action) {
     state.course.description[action.payload.id][action.payload.key] = action.payload.value;

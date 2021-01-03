@@ -118,7 +118,7 @@ input:checked + .slider:before {
   background: 0px 0px no-repeat padding-box padding-box rgb(10, 14, 27);
 }
 .price input {
-  width: 50%;
+  width: 25%;
 }
 .price span input {
   color: #cac6d4;
@@ -279,6 +279,15 @@ textarea {
 .config input[type='radio'] {
   float: right;
   margin-top: 5px;
+}
+#type_prev input[type='radio'] {
+  float: none;
+  margin-top: 5px;
+  margin-left: 5px;
+}
+.price-config input[type='number'] {
+  float: none;
+  width: 100%;
 }
 .config div {
   margin-bottom: 2px;

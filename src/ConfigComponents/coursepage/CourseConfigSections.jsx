@@ -9,6 +9,7 @@ import {
 } from '../handleImage';
 import FontPicker from 'font-picker';
 import swal from 'sweetalert';
+import history from '../../history';
 
 // const YOUR_API_KEY = 'https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyCuFNlrwKUMRXcw0ZPXMPnch6Vk4g8KeSY';
 // const fontPicker = new FontPicker(
@@ -280,95 +281,128 @@ export function ConfigInstructorReviews(props) {
 
 function checkPro(user, data) {
   if (!user.isPro && !data.course.show.price)
-    swal('Oops...', 'Only pro users can charge for their courses', 'info');
+    swal('Oops...', 'Only pro users can charge for their courses', 'info', {
+      buttons: ['OK', 'Try with pro'],
+    }).then((name) => {
+      if (name) window.location='https://pay.leader.codes';
+
+      // return fetch(`https://pay.leader.codes`);
+    });
   else data.showPrice();
 }
 export function ConfigBuyCourse(props) {
   let {data} = props;
   return (
     <>
-      <h5>Course card </h5>
-
-      <div>
-        Price
-        <label
-          class="switch"
-          data-toggle="tooltip"
-          data-placement="top"
-          title="Hide/show price"
-        >
-          <input
-            type="checkbox"
-            onClick={() => checkPro(data.user, data)}
-            checked={data.course.show.price}
-          />
-          <span class="slider round"></span>
-        </label>
+      <h5>Course price </h5>
+      <div className="price-config">
+        <div>
+          Charge for the course
+          <label
+            class="switch"
+            data-toggle="tooltip"
+            data-placement="top"
+            title="Hide/show price"
+          >
+            <input
+              type="checkbox"
+              onClick={() => checkPro(data.user, data)}
+              checked={data.course.show.price}
+            />
+            <span class="slider round"></span>
+          </label>
+          {data.course.show.price && (
+            <div>
+              Price
+              <input
+                type="number"
+                min="0"
+                onChange={(e) => data.setPrice(e.target.value)}
+                value={data.course.price}
+              />
+            </div>
+          )}
+        </div>
         {data.course.show.price && (
-          <input
-            type="text"
-            onChange={(e) => data.setPrice(e.target.value)}
-            value={data.course.price}
-          />
+          <div>
+        Previous price
+            <label
+              class="switch"
+              data-toggle="tooltip"
+              data-placement="top"
+              title="Hide/show previous price"
+            >
+              <input
+                type="checkbox"
+                onClick={data.showPrevPrice}
+                checked={data.course.show.prev_price}
+              />
+              <span class="slider round"></span>
+            </label>
+            {data.course.show.prev_price && (
+              <input
+                min="0"
+                type="number"
+                onChange={(e) => data.setPrevPrice(e.target.value)}
+                value={data.course.prev_price}
+              />
+            )}
+          </div>
         )}
-      </div>
-      {data.course.show.price && (
+        {data.course.show.prev_price && data.course.show.price && (
+          <div>
+            Timer to previoוs price
+            <label
+              class="switch"
+              data-toggle="tooltip"
+              data-placement="top"
+              title="Hide/show time to previous price"
+            >
+              <input
+                type="checkbox"
+                onClick={data.showPrevPriceTime}
+                checked={data.course.show.prev_price_time}
+              />
+              <span class="slider round"></span>
+            </label>
+            {data.course.show.prev_price_time && (
+              <>
+                <input
+                  min="0"
+                  type="number"
+                  onChange={(e) => data.setPrevPriceTime(e.target.value)}
+                  value={data.course.prev_price_time}
+                />
+                <div id="type_prev" radioGroup="type_prev">
+                  <span>
+                    hours
+                    <input
+                      type="radio"
+                      checked={data.course.prev_price_type === 'hours'}
+                      onChange={(e) => data.setPrevPriceType('hours')}
+                    />
+                  </span>
+                  <span className="float-right">
+                    days
+                    <input
+                      type="radio"
+                      checked={data.course.prev_price_type === 'days'}
+                      onChange={(e) => data.setPrevPriceType('days')}
+                    />
+                  </span>
+                </div>
+              </>
+            )}
+          </div>
+        )}
         <div>
-          Previos price
-          <label
-            class="switch"
-            data-toggle="tooltip"
-            data-placement="top"
-            title="Hide/show previos price"
-          >
-            <input
-              type="checkbox"
-              onClick={data.showPrevPrice}
-              checked={data.course.show.prev_price}
-            />
-            <span class="slider round"></span>
-          </label>
-          {data.course.show.prev_price && (
-            <input
-              type="text"
-              onChange={(e) => data.setPrevPrice(e.target.value)}
-              value={data.course.prev_price}
-            />
-          )}
+          Image
+          <input
+            type="file"
+            accept=".png, .jpg, .jpeg"
+            onChange={(e) => handleImage(e, data.setImage)}
+          />
         </div>
-      )}
-      {data.course.show.prev_price && data.course.show.price && (
-        <div>
-          Time to previos price
-          <label
-            class="switch"
-            data-toggle="tooltip"
-            data-placement="top"
-            title="Hide/show time to previos price"
-          >
-            <input
-              type="checkbox"
-              onClick={data.showPrevPriceTime}
-              checked={data.course.show.prev_price_time}
-            />
-            <span class="slider round"></span>
-          </label>
-          {data.course.show.prev_price_time && (
-            <input
-              type="text"
-              onChange={(e) => data.setPrevPriceTime(e.target.value)}
-              value={data.course.prev_price_time}
-            />
-          )}
-        </div>
-      )}
-      <div>
-        Image
-        <input
-          type="file"
-          accept=".png, .jpg, .jpeg"
-          onChange={(e) => handleImage(e, data.setImage)}
-        />
       </div>
     </>
   );
@@ -683,7 +717,6 @@ export function ConfigMoreCourses(props) {
           </div>
         </div>
       </radioGroup>
-      <CourseButtons></CourseButtons>
       {/* <Dropdown>
         <Dropdown.Toggle variant="light" id="dropdown-basic">
           Algorithm
