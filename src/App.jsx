@@ -46,6 +46,7 @@ import RouteView from './ViewComponents/RouteView';
 import {connect} from 'react-redux';
 import Spinner from './spinner/spinner';
 import {actions} from './Store/actions';
+import managerProfilePage from './ViewComponents/profilePage/managerProfilePage';
 
 function mapStateToProps(state) {
   return {
@@ -56,39 +57,31 @@ const mapDispatchToProps = (dispatch) => ({
   setProcess: (name) => dispatch(actions.setProcess(name)),
 });
 function App(props) {
-  useEffect(() => {
-  });
+  useEffect(() => {});
   return (
     <div className="App">
-      
-        <Router history={history}>
-          <Switch>
-            <Route path="/login" component={Login}>
-              {/* <Login /> */}
-            </Route>
-            <Route path="/register" component={Register}>
-              {/* <Register /> */}
-            </Route>
-            <Route path="/wizard" component={wizard}>
-              {/* <Wizard /> */}
-            </Route>
-            <Route path="/view/:school" component={RouteView}>
-              {/* <Wizard /> */}
-            </Route>
-            {/* <Route path="/course">
+      <Router history={history}>
+        <Switch>
+          <Route path="/login" component={Login}></Route>
+          <Route path="/register" component={Register}></Route>
+          <Route path="/wizard" component={wizard}></Route>
+          <Route path="/view/profile" component={studentProfilePage}></Route>
+          <Route path="/view/:school" component={RouteView}></Route>
+
+          {/* <Route path="/course">
             <CoursePage />
           </Route> */}
-            <Route path="/:name" component={RouteConfig}>
-              {/* <RouteConfig /> */}
-            </Route>
+          <Route path="/:name" component={RouteConfig}>
+            {/* <RouteConfig /> */}
+          </Route>
 
-            <Route exact path="/">
-              <Redirect to="/login" />
-              {/* <HomePage /> */}
-            </Route>
-          </Switch>
-        </Router>
-      
+          <Route exact path="/">
+            <Redirect to="/login" />
+            {/* <HomePage /> */}
+          </Route>
+        </Switch>
+      </Router>
+
       {/* <Login /> */}
 
       {/* <CoursePage /> */}

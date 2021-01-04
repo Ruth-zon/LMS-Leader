@@ -147,7 +147,7 @@ export default connect(
           {user.uid !== undefined && user.uid !== '0' && (
             <>
               <div className="user-nav"></div>
-              <Image className="user-img" src={user.photoURL} />
+              <Image className="user-img" src={user.photoURL} onClick={()=>history.push("/view/profile")}/>
               {/* <span>{user.userName || user.username}</span> */}
 
               <NavDropdown
@@ -155,10 +155,10 @@ export default connect(
                 id="basic-nav-dropdown"
               >
                { user.userName || user.username}
-                <NavDropdown.Item >
-                  New course
+                <NavDropdown.Item onClick={()=>history.push('/view/profile')}>
+                  My profile
                 </NavDropdown.Item>
-                <NavDropdown.Item >View my courses</NavDropdown.Item>
+                <NavDropdown.Item>View my courses</NavDropdown.Item>
                 <NavDropdown.Item
                   onClick={() => {
                     signOut();

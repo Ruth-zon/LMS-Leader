@@ -20,6 +20,7 @@ import LessonPageFrame from './Frame/LessonPageFrame';
 import TopFrame from './Frame/top_frame';
 import StudentProfilePage from '../ViewComponents/profilePage/studentProfilePage';
 import Spinner from '../spinner/spinner';
+import ManagerProfilePage from '../ViewComponents/profilePage/managerProfilePage';
 
 // import studentProfilePage from '../ViewComponents/studentProfilePage';
 // import Stage from './Frame/stage';
@@ -55,7 +56,7 @@ export default connect(
       <Switch >
         <Route path={`${match.path}/profile`}>
           {/* <CoursePage /> */}
-          <StudentProfilePage />
+          <ManagerProfilePage />
 
         </Route>
         <Route path={`${match.path}/addcourse`}>

@@ -140,7 +140,7 @@ export function checkPremission(data) {
             const urlParams = new URLSearchParams(queryString);
             const des = urlParams.get('des')
             const routes = urlParams.get('routes')
-            const userName = data.userName
+            const userName = data.userName ||data.username
             console.log(userName)
             let redirectUrl = ''
             if (des) {
@@ -163,12 +163,13 @@ export function checkPremission(data) {
                     // store.dispatch(actions.getAllForUser(userName))
                     let school = localStorage.getItem('school')
                     let back = localStorage.getItem('back')
-                    if (back == true && school != "undefined" && school != undefined) {
+                    debugger
+                    if (back == "true" && school != "undefined" && school != undefined) {
                         localStorage.setItem('sid', uid);
                         store.dispatch(actions.addStudentToSchool({ "uid": uid, "school": school }))
                         history.push('/view/' + school);
                     }
-                    else
+                    else if (back!="true")
                         history.push('/' + userName);
                     localStorage.removeItem('back');
 

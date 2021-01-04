@@ -28,7 +28,7 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(function MoreCourseCard(props) {
-  const type = (props.user.uid = props.school.uid ? 'manager' : 'student');
+  const type = (props.user.uid == props.school.uid ? 'manager' : 'student');
   var url = window.location;
   var school = url.pathname.split('/')[2];
   const navigate = () => {
