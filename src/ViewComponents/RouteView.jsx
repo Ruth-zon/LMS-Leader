@@ -8,7 +8,7 @@ import {
 //   import CoursePage from './coursepage/CoursePage';
 // import LessonPage from './lessonPage';
 import HomePage from './homepage/HomePage';
-import React from 'react';
+import React, { useEffect } from 'react';
 import {connect} from 'react-redux';
 import {actions} from '../Store/actions';
 // import {Courses} from '../Store/data';
@@ -33,6 +33,7 @@ import SearchCourse from './SearchPage/ShearchCourse';
 const mapDispatchToProps = (dispatch) => ({
   initialCourses: (courses) => dispatch(actions.initialCourse(courses)),
   initialCourse: (courses) => dispatch(actions.initialCourse(courses)),
+  getAllForGuess: (userName) => dispatch(actions.getAllForGuess(userName)),
 });
 
 function mapStateToProps(state) {
@@ -46,6 +47,10 @@ export default connect(
 )(function RouteView(props) {
   let match = useRouteMatch();
   // props.initialCourse(Courses);
+  useEffect(() => {
+    var url = window.location;
+    props.getAllForGuess(decodeURI(url.pathname.split('/')[2]));
+  },[]);
   return (
     <div>
       {/* <Link to={`${match.url}/components`}>Components</Link> */}

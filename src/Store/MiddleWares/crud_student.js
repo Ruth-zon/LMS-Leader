@@ -58,8 +58,9 @@ export const student = ({ dispatch, getState }) => next => action => {
                         if (cours) {
                             dispatch(actions.initialCourse(cours));
                             if (cours.students.find(s => s.uid == sid))
-                                dispatch(actions.getLessonsFromServer(cours._id));
-                            dispatch(actions.initialEmptyLesson())
+                                dispatch(actions.getLessonsForStudent(cours._id));
+                            // dispatch(actions.initialEmptyLesson())
+
                         }
                     }
                 }
@@ -79,13 +80,23 @@ export const student = ({ dispatch, getState }) => next => action => {
             withCradentials: true,
             // data: JSON.stringify(dataToProfilePage),
             success: function (data) {
-                dispatch(actions.initialLessons(data.data))
+                dispatch(actions.initialLessons(data))
+                var url = window.location;
+                var lesson = decodeURI(url.pathname.split('/')[4]);
+                if (lesson && lesson != "addlesson" && lesson != "addLesson#") {
+                    let lessn = data.find((l) => (l.name == lesson));
+                    if (lessn) {
+                        dispatch(actions.initialLesson(lessn))
+                        dispatch(actions.setLessonProp([action.payload, "course_id"]))
+                    }
+                }
             },
         });
     }
     if (action.type === 'UPDATE_VIEWS_FOR_STUDENT') {
+        // uid/:courseId/:lessonId/finishedLesson
         $.ajax({
-            url: 'https://lms.leader.codes/api/' + sid + '/' + action.payload + '/lessons',
+            url: 'https://lms.leader.codes/api/' + sid + '/' + action.payload.course + '/' + action.payload.lesson + '/finishedLesson',
             headers: {
                 Authorization: jwt,
             },

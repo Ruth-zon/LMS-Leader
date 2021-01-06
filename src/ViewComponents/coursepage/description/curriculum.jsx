@@ -28,7 +28,7 @@ export default connect(
     };
     render() {
       let course = this.props.course;
-      if (course.lessons[0].name) return 'You have to login to see the curriculum'
+      if (!course.lessons[0].name) return 'You have to login to see the curriculum'
       return course.lessons.map((value, idx) => (
         <ListGroup horizontal={'sm'} className="my-2 curriculum" key={idx}>
           <ListGroup.Item>

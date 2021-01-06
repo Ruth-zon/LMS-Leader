@@ -399,7 +399,13 @@ const mycourse = {
   setTitleFont(state, action) {
     state.course.titleFont = action.payload;
   },
+
+  updateStars(state, action) {
+    state.course.students.find(s=>s.uid== action.payload.uid).stars = action.payload.stars;
+    // updateStarsForStudent(action.payload);
+  },
 };
+
 
 export default produce(
   (state, action) => createReducer(state, action, mycourse),

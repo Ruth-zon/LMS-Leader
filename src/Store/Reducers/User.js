@@ -15,8 +15,8 @@ const initialState = {
             schoolId: "",
             coursesEnrolled: [{
                 courseId: "",
-                stars:2,
-                finishedLessons: ["",""]
+                stars: 2,
+                finishedLessons: ["", ""]
             }]
         }],
         profession: ' illustrator & Artist',
@@ -25,8 +25,6 @@ const initialState = {
             aboutStudent: '#FEF0EF',
             recomandCourses: '#EFEFF6'
         },
-        // lesson: Courses.lessons,
-
     }
 };
 
@@ -39,6 +37,12 @@ const myuser = {
     initialUser(state, action) {
         state.user = action.payload;
     },
+    updateViews(state, action) {
+        let school = localStorage.getItem('school')
+        // if (state.user.schoolsEnrolled.find(s => s._id == action.payload.school).coursesEnrolled.find(s => s._id == action.payload.course).finishedLessons[action.payload.lesson])
+        state.user.schoolsEnrolled.find(s => s._id == school).coursesEnrolled.find(s => s._id == action.payload.course).finishedLessons.concat(action.payload.lesson)
+
+    }
 };
 
 export default produce(

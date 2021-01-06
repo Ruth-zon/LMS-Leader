@@ -29,10 +29,7 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(function HomePage(props) {
-  useEffect(() => {
-    var url = window.location;
-    props.getAllForGuess(decodeURI(url.pathname.split('/')[2]));
-  },[]);
+  
   return (
     <>
       <Navigation />

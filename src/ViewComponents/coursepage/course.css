@@ -241,7 +241,7 @@ h3 {
 .top-card {
   height: 250px;
   /* background-color: #fff; */
-  background-image: url('/assets/img_from_xd/User-2.png');
+  /* background-image: url('./img_from_xd/User-2.png'); */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
