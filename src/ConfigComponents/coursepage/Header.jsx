@@ -100,7 +100,7 @@ export default connect(
                     Enrolled{' '}
                     {props.course._id === 0
                       ? '??'
-                      : props.course.students_num}{' '}
+                      : props.course.students.length}{' '}
                     students
                   </Col>
                 )}

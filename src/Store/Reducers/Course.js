@@ -15,7 +15,14 @@ const initialState = {
     stars: 3,
     views: 0,
     weeks: 0,
-    students: 0,
+    students: [
+      {
+        uid:'',stars:3
+      },
+      {
+        uid:'',stars:3
+      }
+    ],
     teacher: {
       name: 'Name of the lecturer',
       img: './img_from_xd/Rectangle 22.png'

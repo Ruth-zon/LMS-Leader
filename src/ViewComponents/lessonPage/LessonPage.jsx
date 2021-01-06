@@ -9,7 +9,7 @@ import Description from '../../ViewComponents/coursepage/description/description
 // import BuyCourse from '../coursepage/BuyCourse';
 import MoreCourses from '../../ViewComponents/coursepage/moreCourses';
 import Belive from '../coursepage/belive';
-import Video from './videoCopy';
+import Video from './video';
 import TopEducators from '../../ViewComponents/coursepage/topEducators';
 import { connect } from 'react-redux';
 
@@ -19,6 +19,14 @@ function mapStateToProps(state) {
     lesson: state.lessonReducer.lesson,
   };
 }
+
+// const mapDispatchToProps = (dispatch) => ({
+//   initialById: (id) => dispatch(actions.initialById(id)),
+//   setName: (name) => dispatch(actions.setName(name)),
+//   setSubtitle: (subtitle) => dispatch(actions.setSubtitle(subtitle)),
+//   setImage: (image) => dispatch(actions.setImage(image)),
+//   initialCourse: (image) => dispatch(actions.initialCourse(image)),
+// });
 export default connect(
   mapStateToProps,
   null

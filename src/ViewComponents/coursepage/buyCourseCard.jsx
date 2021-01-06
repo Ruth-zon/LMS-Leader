@@ -2,13 +2,23 @@ import React, {Component} from 'react';
 import './course.css';
 import {Card, Col, Button, Image, ListGroup} from 'react-bootstrap';
 import {connect} from 'react-redux';
+import {actions} from '../../Store/actions';
+import history from '../../history';
 
 function mapStateToProps(state) {
   return {
     course: state.courseReducer.course,
+    user: state.userReducer.user,
   };
 }
-export default connect(mapStateToProps)(function BuyCourse(props) {
+
+const mapDispatchToProps = (dispatch) => ({
+  addStudentToCourse: (image) => dispatch(actions.addStudentToCourse(image)),
+});
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(function BuyCourse(props) {
   let course = props.course;
 
   return (
@@ -16,18 +26,22 @@ export default connect(mapStateToProps)(function BuyCourse(props) {
       <Card style={{width: '18rem'}}>
         <Card.Img variant="top" src={props.course.image} />
         <Card.Body>
-          {course.show.price && (
+          {course.students.find((s) => s.uid == props.user.uid) ? (
             <>
-              <Card.Title>
-                {props.course.price}
-                {course.show.prev_price && <span>{course.prev_price}</span>}
-              </Card.Title>
-              {course.show.prev_price && course.show.prev_price_time && (
-                <Card.Text>
-                  <Image src="./img_from_xd/orange clock.svg"></Image>
-                  {course.prev_price_time}
-                  left at this price
-                </Card.Text>
+              {course.show.price && (
+                <>
+                  <Card.Title>
+                    {props.course.price}
+                    {course.show.prev_price && <span>{course.prev_price}</span>}
+                  </Card.Title>
+                  {course.show.prev_price && course.show.prev_price_time && (
+                    <Card.Text>
+                      <Image src="./img_from_xd/orange clock.svg"></Image>
+                      {course.prev_price_time}
+                      left at this price
+                    </Card.Text>
+                  )}
+                </>
               )}
               <Button
                 variant="primary"
@@ -35,12 +49,33 @@ export default connect(mapStateToProps)(function BuyCourse(props) {
                 style={{
                   backgroundColor: props.course.colors.button,
                   borderColor: props.course.colors.fontButton,
+                  color: props.course.colors.fontButton,
                 }}
+                onClick={() =>
+                  props.addStudentToCourse({
+                    school: props.course.school_id,
+                    course: props.course._id,
+                  })
+                }
               >
-                <p style={{color: props.course.colors.fontButton}}> Buy Now</p>
+                Enroll Now
               </Button>
             </>
+          ) : (
+            <Button
+              variant="primary"
+              block
+              style={{
+                backgroundColor: props.course.colors.button,
+                borderColor: props.course.colors.fontButton,
+                color: props.course.colors.fontButton,
+              }}
+              onClick={() => history.push()}
+            >
+              Start Now
+            </Button>
           )}
+
           <ListGroup className="card-list" variant="flush">
             <ListGroup.Item>
               <h5>This course includes</h5>

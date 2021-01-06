@@ -9,7 +9,7 @@ import './studentProfile.css';
 import Navigation from '../coursepage/navbar';
 import Belive from '../coursepage/belive';
 import TopEducators from '../coursepage/topEducators';
-import Footer from '../Footer';
+import Footer from '../homepage/Footer';
 import CourseCardWithProgress from './CourseCardWithProgress';
 import { Col, Container, Row } from 'react-bootstrap';
 import {Courses} from '../../Store/data';

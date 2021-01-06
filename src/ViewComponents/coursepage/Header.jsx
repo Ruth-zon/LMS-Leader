@@ -17,8 +17,7 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = (dispatch) => ({
-});
+const mapDispatchToProps = (dispatch) => ({});
 
 export default connect(
   mapStateToProps,
@@ -43,23 +42,31 @@ export default connect(
             </h3>
             <Container>
               <Row>
-                <Col xs="3">
-                  <FaRegStar color="#F3B23A" />
-                  {props.course.stars} stars
-                </Col>
-                <Col xs="3">
-                  <FaRegEye color="#DB4500" />
-                  {/* {props.data.views} */}
-                  Enrolled {props.course.students} students
-                </Col>
-                <Col xs="3">
-                  <FaRegClock />
-                  Duration 10 week
-                </Col>
-                <Col xs="3">
-                  <FaRegPlayCircle color="#3E9365" />
-                  {props.course.lessons.length} Lessons
-                </Col>
+                {props.course.show.stars && (
+                  <Col xs="3">
+                    <FaRegStar color="#F3B23A" />
+                    {props.course.stars} stars
+                  </Col>
+                )}
+                {props.course.show.students && (
+                  <Col xs="3">
+                    <FaRegEye color="#DB4500" />
+                    {/* {props.data.views} */}
+                    Enrolled {props.course.students.length} students
+                  </Col>
+                )}
+                {props.course.show.weeks && (
+                  <Col xs="3">
+                    <FaRegClock />
+                    Duration 10 week
+                  </Col>
+                )}
+                {props.course.show.lessons && (
+                  <Col xs="3">
+                    <FaRegPlayCircle color="#3E9365" />
+                    {props.course.lessons.length} Lessons
+                  </Col>
+                )}
               </Row>
             </Container>
           </div>

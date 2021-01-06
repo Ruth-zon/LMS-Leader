@@ -9,7 +9,7 @@ import './studentProfile.css';
 import Navigation from '../coursepage/navbar';
 import Belive from '../coursepage/belive';
 import TopEducators from '../coursepage/topEducators';
-import Footer from '../Footer';
+import Footer from '../homepage/Footer';
 import CourseCardWithProgress from './CourseCardWithProgress';
 
 import {Courses} from '../../Store/data';
@@ -113,12 +113,12 @@ export default connect(
             {sorted
               ? sorted.map((item) => (
                   <li className="col-md-4 col-sm-12">
-                    <CourseCardWithProgress course={item} />
+                    <CourseCard course={item} />
                   </li>
                 ))
               : list.map((item) => (
                   <li className="col-md-4 col-sm-12">
-                    <CourseCardWithProgress course={item} />
+                    <CourseCard course={item} />
                   </li>
                 ))}
             <li className="col-md-4 col-sm-12">

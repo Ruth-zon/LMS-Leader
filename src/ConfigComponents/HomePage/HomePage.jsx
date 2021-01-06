@@ -1,5 +1,5 @@
 // import '../courseConfig/node_modules/bootstrap/dist/css/bootstrap.min.css';
-import React from 'react';
+import React, {useEffect} from 'react';
 import '../../ViewComponents/homepage/App.css';
 import GetChoice from './GetCoice.jsx';
 import WorldSelectionCourse from './WorldSelectionCourse';
@@ -18,9 +18,12 @@ import {
   Partners as prt,
   Learnings as lrn,
 } from '../../Store/data.js';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
+import { actions } from '../../Store/actions';
 
-const mapDispatchToProps = (dispatch) => ({});
+const mapDispatchToProps = (dispatch) => ({
+  getAllForUser:(userName)=>dispatch(actions.getAllForUser(userName)),
+});
 
 function mapStateToProps(state) {
   return {
@@ -32,6 +35,7 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(function HomePage(props) {
+ 
   return (
     <>
       <div className="homeconf">
@@ -43,7 +47,6 @@ export default connect(
         {props.school.show.worldSelection && <WorldSelectionCourse />}
         {props.school.show.CTA && <CTA />}
         {props.school.show.testimoinal && <Testimoinal />}
-        {/* <Testimoinal data={tst} /> */}
         {props.school.show.partners && <OurPartner />}
         {props.school.show.footer && <Footer />}
       </div>

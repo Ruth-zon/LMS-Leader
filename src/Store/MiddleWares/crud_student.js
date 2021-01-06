@@ -28,6 +28,9 @@ export const student = ({ dispatch, getState }) => next => action => {
 
     let uid = "wdkp5D2hROc4XJbBcqdw9C9C7Ox2"
     // let uid = user.uid;
+    let school = localStorage.getItem('school');
+
+    let sid = localStorage.getItem('sid');
 
     // const url = "https://lobby.leader.codes/api";
 
@@ -54,6 +57,8 @@ export const student = ({ dispatch, getState }) => next => action => {
                         let cours = courses.find((c) => (c.name == course));
                         if (cours) {
                             dispatch(actions.initialCourse(cours));
+                            if (cours.students.find(s => s.uid == sid))
+                                dispatch(actions.getLessonsFromServer(cours._id));
                             dispatch(actions.initialEmptyLesson())
                         }
                     }
@@ -61,36 +66,54 @@ export const student = ({ dispatch, getState }) => next => action => {
             },
         });
     }
-    if (action.type === 'GET_COURSES_FROM_SERVER_SRUDENT') {
+    if (action.type === 'GET_LESSONS_FOR_STUDENT') {
         $.ajax({
-            url: 'https://lms.leader.codes/api/' + action.payload + '/coursesStudent',
+            url: 'https://lms.leader.codes/api/' + sid + '/' + action.payload + '/lessons',
+            headers: {
+                Authorization: jwt,
+            },
+            // data: JSON.stringify(action.payload),
             method: 'get',
             dataType: 'json',
             contentType: 'application/json',
             withCradentials: true,
+            // data: JSON.stringify(dataToProfilePage),
+            success: function (data) {
+                dispatch(actions.initialLessons(data.data))
+            },
+        });
+    }
+    if (action.type === 'UPDATE_VIEWS_FOR_STUDENT') {
+        $.ajax({
+            url: 'https://lms.leader.codes/api/' + sid + '/' + action.payload + '/lessons',
             headers: {
                 Authorization: jwt,
             },
+            // data: JSON.stringify(action.payload),
+            method: 'get',
+            dataType: 'json',
+            contentType: 'application/json',
+            withCradentials: true,
             // data: JSON.stringify(dataToProfilePage),
             success: function (data) {
-                let courses = []
-                if (data && data.length) {
-                    for (let course in data) {
-                        courses.push(data[course])
-                    }
-                    dispatch(actions.initialCourses(courses))
-                }
-                var url = window.location;
-                if (decodeURI(url.pathname.split('/')[1]) == "view") {
-                    var course = decodeURI(url.pathname.split('/')[3]);
-                    if (course) {
-                        let cours = courses.find((c) => (c.name == course));
-                        if (cours) {
-                            dispatch(actions.initialCourse(cours));
-                            dispatch(actions.initialEmptyLesson())
-                        }
-                    }
-                }
+                // dispatch(actions.initialLessons(data.data))
+            },
+        });
+    }
+    if (action.type === 'UPDATE_STARS_FOR_STUDENT') {
+        $.ajax({
+            url: 'https://lms.leader.codes/api/' + sid + '/' + action.payload + '/lessons',
+            headers: {
+                Authorization: jwt,
+            },
+            // data: JSON.stringify(action.payload),
+            method: 'get',
+            dataType: 'json',
+            contentType: 'application/json',
+            withCradentials: true,
+            // data: JSON.stringify(dataToProfilePage),
+            success: function (data) {
+                // dispatch(actions.initialLessons(data.data))
             },
         });
     }
@@ -108,13 +131,32 @@ export const student = ({ dispatch, getState }) => next => action => {
             success: function (res) {
                 // if (res.status=="sucssess")
                 swal("Yes,", "You have successfully registered for school", "success");
-                let school = localStorage.getItem('school');
                 history.push('/view/' + school);
 
             },
             error: function (err) {
                 swal("Oops...", "Something went wrong, please try again later", "error");
 
+            }
+        });
+    }
+    if (action.type === 'ADD_STUDENT_TO_COURSE') {
+        dispatch(actions.setProcess(true));
+        $.ajax({
+            url: 'https://lms.leader.codes/api/' + sid + '/' + school + '/' + action.payload.course + '/enrollToCourse',
+            method: 'get',
+            contentType: 'application/json',
+            withCradentials: true,
+            headers: {
+                Authorization: jwt,
+            },
+            success: function (res) {
+                // if (res.status=="sucssess")
+                swal("Yes,", "You have successfully registered for this course", "success");
+                history.push('/view/' + school + '/' + action.payload.course);
+            },
+            error: function (err) {
+                swal("Oops...", "Something went wrong, please try again later", "error");
             }
         });
     }
@@ -146,7 +188,7 @@ export const student = ({ dispatch, getState }) => next => action => {
         dispatch(actions.setProcess(true));
         const sid = localStorage.getItem('sid');
         dispatch(actions.getSchoolFromServerGuess(action.payload));
-        if (sid && (user.uid==0 || !user.uid)) {
+        if (sid && (user.uid == 0 || !user.uid)) {
             dispatch(actions.setProcess(true));
             $.ajax({
                 url: 'https://lms.leader.codes/api/' + sid + '/getStudentUser',

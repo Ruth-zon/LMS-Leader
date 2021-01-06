@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {connect} from 'react-redux';
 import './frame.css';
 // import Section from '../section/section';
@@ -8,21 +8,30 @@ import TopFrame from './top_frame';
 import Stage from './stage';
 import CourseConfig from '../coursepage/CourseConfig';
 import HomeConfig from '../HomePage/HomeConfig';
+import { actions } from '../../Store/actions';
 
 
+const mapDispatchToProps = (dispatch) => ({
+  getAllForUser:(userName)=>dispatch(actions.getAllForUser(userName)),
+});
 
 function mapStateToProps(state) {
   return {
-      styles: state.stylesReducer.styles,
+    styles: state.stylesReducer.styles,
+    school: state.schoolReducer.school,
   };
 }
-
 function HomePageFrame(props) {
   // const {jsonPage} =props;
   // const pageStyle={
   //     // color:jsonPage.settings.color,
   //     // backgroundColor:jsonPage.settings.bgColor
   // }
+  // useEffect(() => {
+  //   var url = window.location;
+  //   var userName = decodeURI(url.pathname.split('/')[1]);
+  //   props.getAllForUser(userName);
+  // },[]);
   return (
     <div id="frame">
             <TopFrame />
@@ -39,5 +48,5 @@ function HomePageFrame(props) {
   );
 }
 export default connect(
-  mapStateToProps,null
+  mapStateToProps,mapDispatchToProps
 )(HomePageFrame);

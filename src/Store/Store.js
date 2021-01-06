@@ -27,10 +27,10 @@ const store = createStore(reducer, composeWithDevTools(applyMiddleware(student, 
 
 var url = window.location;
 var start = decodeURI(url.pathname.split('/')[1]);
-if (start == "view")
-    store.dispatch(actions.getAllForGuess(decodeURI(url.pathname.split('/')[2])))
-else if (start != "login" && start != "register")
+if (start != "view" && start != "login" && start != "register" && start != "wizard")
     store.dispatch(actions.getAllForUser(start))
+// store.dispatch(actions.getAllForGuess(decodeURI(url.pathname.split('/')[2])))
+// else if (start != "login" && start != "register")
 window.store = store;
 export default store;
 export { reducer };
