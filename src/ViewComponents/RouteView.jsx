@@ -21,7 +21,7 @@ import {actions} from '../Store/actions';
 import StudentProfilePage from './profilePage/studentProfilePage';
 import CoursePage from './coursepage/CoursePage';
 import LessonPage from './lessonPage/LessonPage';
-import SearchCourse from './SearchPage/ShearchCourse';
+import SearchCourse from './SearchPage/SearchCourse';
 // import studentProfilePage from '../ViewComponents/studentProfilePage';
 // import Stage from './Frame/stage';
 // import Configurator from './Frame/configurator';
