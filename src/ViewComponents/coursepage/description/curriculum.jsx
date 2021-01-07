@@ -30,11 +30,11 @@ export default connect(
       let course = this.props.course;
       if (!course.lessons[0].name) return 'You have to login to see the curriculum'
       return course.lessons.map((value, idx) => (
-        <ListGroup horizontal={'sm'} className="my-2 curriculum" key={idx}>
+        <ListGroup horizontal={'sm'} className="my-2 curriculum pr-2" key={idx}>
           <ListGroup.Item>
             <Image src="./img_from_xd/player (2).svg"></Image>
           </ListGroup.Item>
-          <ListGroup.Item>
+          <ListGroup.Item className="width-webkit">
             {value.name}
             <div>
               <Image src="./img_from_xd/orange clock.svg"></Image>

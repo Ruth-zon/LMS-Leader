@@ -113,7 +113,7 @@ export const student = ({ dispatch, getState }) => next => action => {
     }
     if (action.type === 'UPDATE_STARS_FOR_STUDENT') {
         $.ajax({
-            url: 'https://lms.leader.codes/api/' + sid + '/' + action.payload + '/lessons',
+            url: 'https://lms.leader.codes/api/' + sid + '/' + action.payload.course + '/' + action.payload.stars + '/updateStars',
             headers: {
                 Authorization: jwt,
             },
@@ -124,7 +124,7 @@ export const student = ({ dispatch, getState }) => next => action => {
             withCradentials: true,
             // data: JSON.stringify(dataToProfilePage),
             success: function (data) {
-                // dispatch(actions.initialLessons(data.data))
+                dispatch(actions.setStars(data.data))
             },
         });
     }

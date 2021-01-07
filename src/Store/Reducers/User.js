@@ -11,13 +11,10 @@ const initialState = {
         photoURL: './img_from_xd/User.png',
         isPro: false,
         school: '',
-        schoolsEnrolled: [{
-            schoolId: "",
-            coursesEnrolled: [{
-                courseId: "",
-                stars: 2,
-                finishedLessons: ["", ""]
-            }]
+        coursesEnrolled: [{
+            schoolId:"",
+            courseId: "",
+            finishedLessons: ["", ""]
         }],
         profession: ' illustrator & Artist',
         about: 'Hi, my name is Amelie. I am a photo artist and art director from Munich. Last year I was chosen to be one of the nine Adobe Creative Residents in 2019/2020.My pictures are widely known for their colorful, surrealistic touch. by books, lyrics and words in total, I am able to abstract and visualize them into new artworks.',
@@ -38,10 +35,7 @@ const myuser = {
         state.user = action.payload;
     },
     updateViews(state, action) {
-        let school = localStorage.getItem('school')
-        // if (state.user.schoolsEnrolled.find(s => s._id == action.payload.school).coursesEnrolled.find(s => s._id == action.payload.course).finishedLessons[action.payload.lesson])
-        state.user.schoolsEnrolled.find(s => s._id == school).coursesEnrolled.find(s => s._id == action.payload.course).finishedLessons.concat(action.payload.lesson)
-
+        state.user.coursesEnrolled.find(s => s._id == action.payload.course).finishedLessons.concat(action.payload.lesson);
     }
 };
 

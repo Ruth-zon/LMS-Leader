@@ -332,7 +332,15 @@ h3 {
   height: 200px;
   display: flex;
 }
-
+.prev-price {
+  color: #cac6d4;
+  text-decoration: line-through;
+  text-align: right;
+}
+.star-ratings{
+  float: right;
+  top: 6px;
+}
 .header .col-3 {
   text-align: left;
   padding: 0;

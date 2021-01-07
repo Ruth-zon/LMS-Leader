@@ -55,21 +55,16 @@ export default connect(
     photoURL: './img_from_xd/User.png',
     isPro: false,
     school: '',
-    schoolsEnrolled: [
+    coursesEnrolled: [
       {
-        schoolId: '5fd87a7c60407ecd46a9ae42',
-        coursesEnrolled: [
-          {
-            courseId: '5fd89b2166c7cedcd037700a',
-            stars: 4,
-            finishedLessons: ['fd', 'fsd'],
-          },
-          {
-            courseId: '5fd89b2166c7cedcd037700a',
-            stars: 4,
-            finishedLessons: ['fd', 'fsd'],
-          },
-        ],
+        courseId: '5fd89b2166c7cedcd037700a',
+        stars: 4,
+        finishedLessons: ['fd', 'fsd'],
+      },
+      {
+        courseId: '5fd89b2166c7cedcd037700a',
+        stars: 4,
+        finishedLessons: ['fd', 'fsd'],
       },
     ],
     profession: ' illustrator & Artist',
@@ -89,17 +84,16 @@ export default connect(
     history.push(`/view/kjhg/${props.course.name}`);
   };
   var now = 0;
-  try{
-  const finish = user.schoolsEnrolled
-    .find((s) => s.schoolId == props.course.school_id)
-    .coursesEnrolled.find((c) => c.courseId == props.course._id).finishedLessons
-    .length;
-    if (finish > 0 && props.course.lessons.length>0) now =finish/ props.course.lessons.length  *100;
+  try {
+    const finish = user.coursesEnrolled.find(
+      (c) => c.courseId == props.course._id
+    ).finishedLessons.length;
+    if (finish > 0 && props.course.lessons.length > 0)
+      now = (finish / props.course.lessons.length) * 100;
+  } catch (e) {
+    now = 0;
   }
-  catch(e){
-    now=0;
-  }
-  
+
   return (
     // <Link to="/courses">
     <Card

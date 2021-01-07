@@ -24,24 +24,37 @@ class Video extends Component {
     super(props);
     this.state = {
       counter: 0,
+      finish: 0,
     };
+  }
+  componentDidMount() {
+    try {
+      if (
+        this.props.user.coursesEnrolled.find(
+          (c) => c.courseId == this.props.course._id
+        ).finishedLessons[this.props.lesson._id]
+      )
+        this.state.finish = 1;
+    } catch (e) {}
   }
   finish() {
     try {
-      const finish = this.props.user.schoolsEnrolled
-        .find((s) => s.schoolId == this.props.course.school_id)
-        .coursesEnrolled.find((c) => c.courseId == this.props.course._id)
-        .finishedLessons[this.props.lesson._id];
+      const finish = this.props.user.coursesEnrolled.find(
+        (c) => c.courseId == this.props.course._id
+      ).finishedLessons[this.props.lesson._id];
       if (finish == undefined)
         this.props.updateViews({
           lesson: this.props.lesson._id,
           course: this.props.lesson.course_id,
         });
-      // this.props.updateViewsForStudent({"lesson":this.props.lesson._id,"course":this.props.lesson.course_id});
+      this.props.updateViewsForStudent({
+        lesson: this.props.lesson._id,
+        course: this.props.lesson.course_id,
+      });
     } catch (e) {}
   }
   inc = () => {
-    console.log('d' + this.player.getDuration());
+    if (this.state.finish == 1) return;
     let c = this.state.counter;
     this.setState({counter: c + 1});
     if (this.state.counter * 2 > this.player.getDuration()) this.finish();

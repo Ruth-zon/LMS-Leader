@@ -113,6 +113,7 @@ export default connect(
                       className="weeks-i"
                       onChange={(e) => props.setWeeks(e.target.value)}
                       value={props.course.students_num}
+                      min="0"
                     />
                     weeks
                   </Col>
@@ -122,7 +123,7 @@ export default connect(
                     <FaRegPlayCircle color="#3E9365" />
                     {props.course._id == 0
                       ? '??'
-                      : props.course.lessons.length + ' '}{' '}
+                      : props.course.lessons.length + ' '}
                     Lessons
                   </Col>
                 )}

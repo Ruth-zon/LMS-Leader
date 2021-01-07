@@ -30,14 +30,14 @@ export default connect(
             <>
               {course.show.price && (
                 <>
-                  <Card.Title>
-                    {props.course.price}
-                    {course.show.prev_price && <span>{course.prev_price}</span>}
+                  <Card.Title >
+                    {props.course.price}{' '}
+                    {course.show.prev_price && <span className="prev-price">{course.prev_price}</span>}
                   </Card.Title>
                   {course.show.prev_price && course.show.prev_price_time && (
                     <Card.Text>
                       <Image src="./img_from_xd/orange clock.svg"></Image>
-                      {course.prev_price_time}
+                      {course.prev_price_time}{' '}
                       left at this price
                     </Card.Text>
                   )}

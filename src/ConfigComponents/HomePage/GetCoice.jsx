@@ -35,15 +35,14 @@ function mapStateToProps(state) {
 function CourseCards(props) {
   if (!props.courses || !props.courses.length)
     return 'Add courses to see them here';
-  const algo = props.school.getChoice.algorithm;
-  const courses_algo = props.courses.sort((a, b) => a[algo] - b[algo]);
-  // props.initialCourses(courses_algo);
+  let algo = props.school.getChoice.algorithm;
+  let courses_algo = props.courses.sort((a, b) => a[algo] == b[algo]);
   let times =
     props.school.getChoice.items <= courses_algo.length
       ? props.school.getChoice.items
       : courses_algo.length;
-
-  const listItems = [];
+  
+  let listItems = [];
   for (let i = 0; i < times; i++) {
     let x = i;
     listItems.push(

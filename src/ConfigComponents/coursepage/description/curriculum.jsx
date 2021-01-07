@@ -50,7 +50,7 @@ class Curriculum extends Component {
     let course = this.props.course;
     // let arr = ['sm', 'sm', 'sm'];
     return course.lessons.map((value, ind) => (
-      <ListGroup horizontal={'sm'} className="my-2 curriculum" key={ind}>
+      <ListGroup horizontal={'sm'} className="my-2 curriculum pr-2" key={ind}>
         <ListGroup.Item>
           {/* <FaTrash
             className="trash-lesson"
@@ -59,7 +59,7 @@ class Curriculum extends Component {
           /> */}
           <Image src="./img_from_xd/player (2).svg"></Image>
         </ListGroup.Item>
-        <ListGroup.Item>
+        <ListGroup.Item className="width-webkit">
           {value.name}
           {/* Everything You Need to Know Business */}
           <div>
