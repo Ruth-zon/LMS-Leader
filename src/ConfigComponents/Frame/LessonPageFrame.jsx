@@ -7,7 +7,7 @@ import Configurator from './configurator';
 import TopFrame from './top_frame';
 import Stage from './stage';
 import CourseConfig from '../coursepage/CourseConfig';
-import CoursePage from '../coursepage/CoursePage';
+import CoursePage from '../coursepage/coursePage';
 import LessonPage from '../lessonPage/LessonPage';
 import LessonConfig from '../lessonPage/LessonConfig';
 

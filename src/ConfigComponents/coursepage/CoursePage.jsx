@@ -21,7 +21,6 @@ import Navigation from '../../navbar';
 import Header from './Header';
 import '../../ViewComponents/coursepage/course.css';
 import Description from './description/description';
-import BuyCourse from './BuyCourse';
 import MoreCourses from './moreCourses';
 import {
   // Categories as ctgs,
@@ -36,6 +35,7 @@ import TopEducators from './topEducators';
 import {actions} from '../../Store/actions';
 import {connect} from 'react-redux';
 import CourseConfig from './CourseConfig';
+import BuyCourse from './BuyCourse';
 const mapDispatchToProps = (dispatch) => ({
   initialCourse: (course) => dispatch(actions.initialCourse(course)),
 });

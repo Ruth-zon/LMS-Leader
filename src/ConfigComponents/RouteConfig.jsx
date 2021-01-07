@@ -5,7 +5,7 @@ import {
   Link,
   useRouteMatch,
 } from 'react-router-dom';
-import CoursePage from './coursepage/CoursePage';
+import CoursePage from './coursepage/coursePage';
 // import LessonPage from './lessonPage';
 import HomePage from './HomePage/HomePage';
 import React from 'react';
