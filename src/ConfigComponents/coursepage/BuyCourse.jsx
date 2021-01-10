@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import React from 'react';
 import '../../ViewComponents/coursepage/course.css';
-import {Card, Col, Button, Image, ListGroup} from 'react-bootstrap';
+import {Card, Button, Image, ListGroup} from 'react-bootstrap';
 import {connect} from 'react-redux';
 import {actions} from '../../Store/actions';
 import {handleImage} from '../handleImage';
@@ -20,23 +20,14 @@ function mapStateToProps(state) {
     course: state.courseReducer.course,
   };
 }
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(function BuyCourse(props) {
-  // let course = props.data;
+function BuyCourse(props) {
   const {
     course,
     setCourseInfo,
     setSectionConfig,
     setPrevPrice,
     setPrevPriceTime,
-    // setLanguage,
     setPrice,
-    // setAccess,
-    // setCertificate,
-    // setUse,
   } = props;
   return (
     <div
@@ -117,7 +108,6 @@ export default connect(
           >
             Enroll Now
           </Button>
-
           <ListGroup className="card-list" variant="flush">
             <ListGroup.Item
               onClick={(e) => {
@@ -143,50 +133,7 @@ export default connect(
                   </p>
                 );
               })}
-              {/*{course.show.language && (
-                <p>
-                  <Image src="./img_from_xd/book.svg"></Image>
-                  Language -{' '}
-                  <input
-                    value={course.language}
-                    onChange={(e) => setLanguage(e.target.value)}
-                  />
-                </p>
-              )}
-              {course.show.use && (
-                <p>
-                  <Image src="./img_from_xd/screen.svg"></Image>
-                  <input
-                    value={course.use}
-                    onChange={(e) => setUse(e.target.value)}
-                  />
-                </p>
-              )}
-              {course.show.access && (
-                <p>
-                  <Image src="./img_from_xd/timer.svg"></Image>
-                  <input
-                    value={course.access}
-                    onChange={(e) => setAccess(e.target.value)}
-                  />
-                </p>
-              )}
-              {course.show.certificate && (
-                <p>
-                  <Image src="./img_from_xd/other.svg"></Image>
-                  <input
-                    value={course.certificate}
-                    onChange={(e) => setCertificate(e.target.value)}
-                  />
-                </p>
-              )}*/}
             </ListGroup.Item>
-
-            {/* <ListGroup.Item>
-              <h6>Training 5 or more people?</h6>Get your team access to 3500+
-              top courses anytime.
-              <span className=" card-text"> Contact our sale</span>
-            </ListGroup.Item> */}
             <ListGroup.Item
               onClick={(e) => {
                 setSectionConfig({name: 'buy_course_share'});
@@ -206,7 +153,9 @@ export default connect(
               {course.show.share.twitter && (
                 <Image src="./img_from_xd/twitter (1).svg"></Image>
               )}
-              {/* {course.show.share.linkedin&&  <Image src="./img_from_xd/linkedin (1).svg"></Image> } */}
+              {course.show.share.linkedin && (
+                <Image src="./img_from_xd/linkedin (1).svg"></Image>
+              )}
               {course.show.share.youtube && (
                 <Image src="./img_from_xd/youtube (1).svg"></Image>
               )}
@@ -219,6 +168,6 @@ export default connect(
       </Card>
     </div>
   );
-});
+}
 
-// export default BuyCourse;
+export default connect(mapStateToProps, mapDispatchToProps)(BuyCourse);

@@ -1,5 +1,4 @@
 import React from 'react';
-import {Dropdown} from 'react-bootstrap';
 import {FaCopy, FaPlus, FaTrash} from 'react-icons/fa';
 import {
   handleDelete,
@@ -7,17 +6,9 @@ import {
   handleImage,
   handleImageById,
 } from '../handleImage';
-import FontPicker from 'font-picker';
 import swal from 'sweetalert';
-import history from '../../history';
 
-// const YOUR_API_KEY = 'https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyCuFNlrwKUMRXcw0ZPXMPnch6Vk4g8KeSY';
-// const fontPicker = new FontPicker(
-//   YOUR_API_KEY, // Google API key
-//   "Open Sans", // Default font
-//   { limit: 30 }, // Additional options
-// );
-export function ConfigHeader(props) {
+function ConfigHeader(props) {
   let data = props.data;
   return (
     <>
@@ -126,7 +117,7 @@ export function ConfigHeader(props) {
   );
 }
 
-export function ConfigOverview(props) {
+function ConfigOverview(props) {
   let {data} = props;
   return (
     <>
@@ -202,42 +193,7 @@ export function ConfigOverview(props) {
   );
 }
 
-export function ConfigCurriculum(props) {
-  // let {data} = props;
-  // return (
-  //   <>
-  //     <h5>
-  //       Curriculum
-  //       {/* <FaPlus
-  //         onClick={(e) =>
-  //           data.addLesson({header: 'title', text: 'text'})
-  //         }
-  //       /> */}
-  //     </h5>
-  //   </>
-  // );
-  return null;
-}
-
-export function ConfigCurriculumX(props) {
-  // let {data} = props;
-  // return (
-  //   <>
-  //     <h5>
-  //       Curriculum
-  //       {/* <FaPlus
-  //         onClick={(e) =>
-  //           data.addLesson({header: 'title', text: 'text'})
-  //         }
-  //       /> */}
-  //     </h5>
-  //   </>
-  // );
-  return null;
-}
-
-//here
-export function ConfigInstructorReviews(props) {
+function ConfigInstructorReviews(props) {
   let data = props.data;
   return (
     <>
@@ -284,13 +240,13 @@ function checkPro(user, data) {
     swal('Oops...', 'Only pro users can charge for their courses', 'info', {
       buttons: ['OK', 'Try with pro'],
     }).then((name) => {
-      if (name) window.location='https://pay.leader.codes';
+      if (name) window.location = 'https://pay.leader.codes';
 
       // return fetch(`https://pay.leader.codes`);
     });
   else data.showPrice();
 }
-export function ConfigBuyCourse(props) {
+function ConfigBuyCourse(props) {
   let {data} = props;
   return (
     <>
@@ -325,7 +281,7 @@ export function ConfigBuyCourse(props) {
         </div>
         {data.course.show.price && (
           <div>
-        Previous price
+            Previous price
             <label
               class="switch"
               data-toggle="tooltip"
@@ -408,17 +364,12 @@ export function ConfigBuyCourse(props) {
   );
 }
 
-export function ConfigBuyCourseShare(props) {
+function ConfigBuyCourseShare(props) {
   let {data} = props;
   return (
     <>
       <h5>
         Course card
-        {/* <FaPlus
-          onClick={(e) =>
-            data.addLesson({header: 'title', text: 'text'})
-          }
-        /> */}
       </h5>
       <div>
         Instegram
@@ -567,7 +518,7 @@ export function ConfigBuyCourseShare(props) {
     </>
   );
 }
-export function ConfigBuyCourseInfo(props) {
+function ConfigBuyCourseInfo(props) {
   let {data} = props;
   return (
     <>
@@ -640,7 +591,7 @@ export function ConfigBuyCourseInfo(props) {
   );
 }
 
-export function ConfigMoreCourses(props) {
+function ConfigMoreCourses(props) {
   let data = props.data;
   return (
     <>
@@ -717,26 +668,11 @@ export function ConfigMoreCourses(props) {
           </div>
         </div>
       </radioGroup>
-      {/* <Dropdown>
-        <Dropdown.Toggle variant="light" id="dropdown-basic">
-          Algorithm
-        </Dropdown.Toggle>
-
-        <Dropdown.Menu>
-          <Dropdown.Item onClick={(e) => data.showMoreCourses()}>
-            Category
-          </Dropdown.Item>
-          <Dropdown.Item onClick={(e) => data.showMoreCourses()}>
-            Auther
-          </Dropdown.Item>
-          // {/* <Dropdown.Item>Something else</Dropdown.Item> 
-        </Dropdown.Menu>
-      </Dropdown> */}
     </>
   );
 }
 
-export function ConfigBelive(props) {
+function ConfigBelive(props) {
   let data = props.data;
   return (
     <>
@@ -796,7 +732,7 @@ export function ConfigBelive(props) {
   );
 }
 
-export function ConfigFooter(props) {
+function ConfigFooter(props) {
   let data = props.data;
   return (
     <>
@@ -822,7 +758,7 @@ export function ConfigFooter(props) {
   );
 }
 
-export function ConfigTopEducators(props) {
+function ConfigTopEducators(props) {
   let data = props.data;
   return (
     <>
@@ -875,7 +811,7 @@ export function ConfigTopEducators(props) {
   );
 }
 
-export function ConfigTopEducatorsX(props) {
+function ConfigTopEducatorsX(props) {
   let {data, id} = props;
 
   return (
@@ -953,7 +889,7 @@ export function ConfigTopEducatorsX(props) {
   );
 }
 
-export function CourseButtons(props) {
+function ConfigCourseButtons(props) {
   return (
     <>
       <h5>Buttons</h5>
@@ -974,14 +910,8 @@ export function CourseButtons(props) {
           onChange={(e) => props.color([e.target.value, 'fontButton'])}
         />
       </div>
-
-      {/* <input type="text"
-        width={2}
-        InputProps={{ className: classes.multilineColor }}
-        onChange={(e) => this.props.changeFont(e.target.value)}
-        placeholder="To"
-        value={this.props.homeStoreDesign.titleFont.titleCategory}
-        className={classes.fieldTextStyle} /> */}
     </>
   );
 }
+
+export {ConfigBelive, ConfigBuyCourse, ConfigBuyCourseInfo, ConfigBuyCourseShare, ConfigFooter, ConfigHeader, ConfigMoreCourses,ConfigInstructorReviews,ConfigOverview, ConfigTopEducators, ConfigTopEducatorsX, ConfigCourseButtons}

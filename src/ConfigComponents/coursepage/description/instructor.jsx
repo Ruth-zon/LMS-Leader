@@ -2,14 +2,8 @@ import React, {Component} from 'react';
 import {Row, Container, Col, Image} from 'react-bootstrap';
 import '../../../ViewComponents/coursepage/course.css';
 import {FaRegStar, FaRegEye, FaRegPlayCircle} from 'react-icons/all';
-class Instructor extends Component {
-  constructor() {
-    super();
-    this.state = {
-      name: 'React',
-    };
-  }
 
+class Instructor extends Component {
   render() {
     return (
       <>
@@ -25,11 +19,11 @@ class Instructor extends Component {
                   <Row className="icons">
                     <Col xs="4" className="align-left">
                       <FaRegStar color="#F3B23A" />
-                      {/* {data.stars} */}4.5 (1,348 ratings)
+                      4.5 (1,348 ratings)
                     </Col>
                     <Col xs="4">
                       <FaRegEye color="#DB4500" />
-                      {/* {data.views} */}271,658 Students
+                     271,658 Students
                     </Col>
                     <Col xs="4" className="align-right">
                       <FaRegPlayCircle color="#3E9365" />

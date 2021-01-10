@@ -1,8 +1,5 @@
-/* @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:regular,bold,italic&subset=latin,latin-ext'); */
 @import url(https://fonts.googleapis.com/css?family=Press+Start+2P);
-/* body { 
-  font-family: 'Press Start 2P', cursive;
-} */
+
 .rec.rec-arrow {
   visibility: hidden;
 }

@@ -1,6 +1,4 @@
 import {FaArrowLeft, FaArrowRight} from 'react-icons/all';
-// import '../courseConfig/node_modules/bootstrap/dist/css/bootstrap.min.css';
-// import CourseCard from '../homepage/Courses'
 import ListCourses from '../ListCourses';
 import React from 'react';
 import {CardDeck, Form, Dropdown, Button} from 'react-bootstrap';
@@ -38,13 +36,9 @@ function CarouselItem(props) {
   for (let i = 0; i < times; i++) {
     listItems.push(<CourseCard course={courses_algo[i]} />);
   }
-  // debugger;
   return listItems;
 }
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(function MoreCourses(props) {
+function MoreCourses(props) {
   let {course, courses} = props;
   let carousel = null;
   const breakPoints = [
@@ -52,16 +46,6 @@ export default connect(
     {width: 1000, itemsToShow: 2},
     {width: 1500, itemsToShow: 3},
   ];
-  // const prev = (
-  //   <button onClick={carousel.slidePrev()} className="carousel-left">
-  //     <FaArrowLeft />
-  //   </button>
-  // );
-  // const next = (
-  //   <button onClick={carousel.slideNext()} className="carousel-right">
-  //     <FaArrowRight />
-  //   </button>
-  // );
   return (
     <section
       id="world"
@@ -95,16 +79,6 @@ export default connect(
           >
             <p style={{color: props.course.colors.fontButton}}>View all</p>
           </button>
-          {/* <Button
-                variant="primary"
-                block
-                style={{ backgroundColor: props.course.colors.button, borderColor: props.course.colors.fontButton }}
-                onClick={(e) => {
-                  props.setSectionConfig({ name: 'course_buttons' });
-                }}
-              >
-                <p style={{ color: props.course.colors.fontButton }}> Buy Now</p>
-              </Button> */}
         </Form>
         <h3>
           <input
@@ -126,9 +100,6 @@ export default connect(
       <div className="content mt--42">
         <Button
           variant="light"
-          // disabled={
-          //   !carousel.state.firstItem
-          // }
           onClick={() => {
             carousel.slidePrev();
           }}
@@ -137,12 +108,6 @@ export default connect(
           <FaArrowLeft />
         </Button>
         <Button
-          // disabled={
-          //   !carousel ||
-          //   !props.course.top_educators.length -
-          //     carousel.state.firstItem -
-          //     carousel.state.pages.length
-          // }
           variant="light"
           onClick={() => {
             if (
@@ -160,5 +125,6 @@ export default connect(
       </div>
     </section>
   );
-});
-// export default MoreCourses;
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MoreCourses);

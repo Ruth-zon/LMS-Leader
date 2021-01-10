@@ -45,7 +45,7 @@
   border-color: transparent;
   background-color: transparent;
 }
-#accordion .card-header *:hover {
+#accordion .card-header :hover {
   opacity: 0.6;
 }
 .button_collapse .btn-link:hover {

@@ -33,7 +33,6 @@ class Belive extends Component {
           onClick={() => setSectionConfig({name: 'course_belive'})}
           className=" belive beliveconf hover-config "
           style={{backgroundColor: course.colors.belive}}
-          
         >
           <Container>
             <Row>
@@ -75,4 +74,3 @@ class Belive extends Component {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Belive);
-// export default Belive;

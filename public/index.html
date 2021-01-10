@@ -9,20 +9,12 @@
   <meta name="description" content="Web site created using create-react-app" />
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="" integrity="" crossorigin="anonymous">
-  <!-- <link rel="stylesheet" href="https://video-react.github.io/assets/video-react.css" /> -->
-  <!-- NOW UI Kit CSS -->
   <link rel="stylesheet" href="/assets/css/now-ui-kit.css">
-  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-  <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
   <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
   <script src="/src/index.jsx"></script>
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Bungee+Inline" rel="stylesheet">
-  <!-- <link href="https://fonts.googleapis.com/css?family=Poppins"> -->
 
   <script crossorigin src="https://unpkg.com/react/umd/react.production.min.js" crossorigin></script>
 
@@ -31,23 +23,7 @@
   <script crossorigin src="https://unpkg.com/react-bootstrap@next/dist/react-bootstrap.min.js" crossorigin></script>
   <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
   <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase.js"></script>
-  <!-- <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-auth.js"></script>
-  <script src="https://cdn.firebase.com/libs/firebaseui/4.0.0/firebaseui.js"></script>
-  -->
-
   <script>var Alert = ReactBootstrap.Alert;</script>
-
-
-  <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
-
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
   <base href="/">
 
   <title>Courses</title>
@@ -70,24 +46,6 @@
   <script src="/assets/js/plugins/jasny-bootstrap.js"></script>
   <script src="/assets/js/plugins/nouislider.min.js"></script>
   <script src="/assets/js/plugins/bootstrap-datetimepicker.min.js"></script>
-  <!-- <script>
-
-    $(document).ready(function () {
-      firebase.auth.Auth.Persistence.LOCAL;
-
-      let exsistsJwt = document.cookie.split(";").filter(s => s.includes('jwt'))
-      console.log(exsistsJwt)
-
-      firebase
-        .auth()
-        .signOut()
-        .then(function () {
-          console.log("logged out");
-          document.cookie = 'jwt' + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;domain=.leader.codes';
-        })
-        .catch(function (error) { });
-      })
-  </script> -->
 </body>
 
 </html>

@@ -1,6 +1,4 @@
 import { FaArrowLeft, FaArrowRight } from 'react-icons/all';
-// import '../courseConfig/node_modules/bootstrap/dist/css/bootstrap.min.css';
-// import {CourseCard, FirstRowCourse, SecondRowCourse} from './homepage/Courses';
 import React, { Component } from 'react';
 import { Button, Card, CardDeck, Image } from 'react-bootstrap';
 import '../../ViewComponents/homepage/App.css';
@@ -10,7 +8,6 @@ import { handleImageById } from '../handleImage';
 import { actions } from '../../Store/actions';
 import Carousel from 'react-elastic-carousel';
 import '../HomePage/carousel.css';
-// impore './'
 
 function mapStateToProps(state) {
   return {
@@ -91,9 +88,6 @@ class TopEducators extends Component {
                     })
                   }
                 >
-                  {/* <Card.ImgOverlay >
-                          <Image src={item.bg}></Image>
-                        </Card.ImgOverlay> */}
                   <Card.Body>
                     <div className="file-upload2">
                       <Image src={item.image}></Image>
@@ -123,7 +117,6 @@ class TopEducators extends Component {
                       />
                     </Card.Text>
                     <Card.Title>
-                      {/* <img src={item.content} alt="Student"></img> */}
                       <textarea
                         value={item.content}
                         onChange={(e) =>
@@ -159,8 +152,6 @@ class TopEducators extends Component {
               </>
             );
           })}
-          {/* </CardDeck> */}
-          {/* </Carousel.Item> */}
         </Carousel>
         <div className="content mt--42">
           <Button
@@ -176,12 +167,6 @@ class TopEducators extends Component {
             <FaArrowLeft />
           </Button>
           <Button
-            // disabled={
-            //   !this.carousel ||
-            //   !this.props.course.top_educators.length -
-            //     this.carousel.state.firstItem -
-            //     this.carousel.state.pages.length
-            // }
             variant="light"
             onClick={() => {
               if (
@@ -202,4 +187,3 @@ class TopEducators extends Component {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(TopEducators);
-// export default TopEducators;

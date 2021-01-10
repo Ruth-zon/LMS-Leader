@@ -3,13 +3,6 @@ import {Col, Container, Image, Row} from 'react-bootstrap';
 import '../../../ViewComponents/coursepage/course.css';
 
 class Reviews extends Component {
-  constructor() {
-    super();
-    this.state = {
-      name: 'React',
-    };
-  }
-
   render() {
     return (
       <>

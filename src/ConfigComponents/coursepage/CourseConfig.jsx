@@ -1,18 +1,15 @@
-import React, {Component, useState} from 'react';
+import React from 'react';
 import {Button, Row} from 'react-bootstrap';
 import {connect} from 'react-redux';
 import {useParams, useRouteMatch} from 'react-router-dom';
 import {actions} from '../../Store/actions';
 import '../configurator.css';
-import {createBrowserHistory} from 'history';
 import $ from 'jquery';
 import swal from 'sweetalert';
 import {FaAngleDown, FaAngleRight, FaPlus, FaTrash} from 'react-icons/fa';
 import history from '../../history';
 import {
   ConfigBuyCourse,
-  ConfigCurriculum,
-  ConfigCurriculumX,
   ConfigHeader,
   ConfigOverview,
   ConfigBuyCourseShare,
@@ -23,10 +20,9 @@ import {
   ConfigTopEducators,
   ConfigTopEducatorsX,
   ConfigInstructorReviews,
-  CourseButtons,
+  ConfigCourseButtons,
 } from './CourseConfigSections';
 import {handleDelete} from '../handleImage';
-const browserHistory = createBrowserHistory();
 
 function mapStateToProps(state) {
   return {
@@ -100,12 +96,7 @@ const mapDispatchToProps = (dispatch) => ({
   setTitleFont: (name) => dispatch(actions.setTitleFont(name)),
   setSectionConfig: (name) => dispatch(actions.setSectionConfig(name)),
 });
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(function CourseConfig(props) {
-  let match = useRouteMatch();
+function CourseConfig(props) {
   let {name, course} = useParams();
   const addLesson = () => {
     if (!props.course._id || props.course.id == '0') {
@@ -117,22 +108,10 @@ export default connect(
     } else {
       props.initialEmptyLesson();
       history.push('/' + name + '/' + course + '/addlesson');
-
-      // browserHistory.replace(
-      //   '/' + match.params.name + '/' + match.params.course + '/addLesson'
-      // );
-      // window.location.reload();
     }
   };
-  // const [choose, setChoose] = useState(0);
-  // const handleChoose = (click) => {
-  //   if (choose === click) setChoose(0);
-  //   else setChoose(click);
-  // };
   const handleSave = () => {
     props.addCourseToServer(props.course);
-    // browserHistory.replace('/' + match.params.name);
-    // window.location.reload();
   };
   const switchConfigComponent = (name, id) => {
     switch (name) {
@@ -140,10 +119,6 @@ export default connect(
         return <ConfigHeader data={props} />;
       case 'course_overview':
         return <ConfigOverview data={props} />;
-      case 'course_curriculum':
-        return <ConfigCurriculum data={props} />;
-      case 'course_curriculum_x':
-        return <ConfigCurriculumX data={props} />;
       case 'course_rev_inst':
         return <ConfigInstructorReviews data={props} />;
       case 'buy_course':
@@ -164,13 +139,11 @@ export default connect(
         return <ConfigTopEducatorsX data={props} id={id} />;
       case 'course_buttons':
         return (
-          <CourseButtons
+          <ConfigCourseButtons
             course={props.course}
             color={props.setColorCourseByPart}
           />
         );
-      // case 'change_font':
-      //   return <CourseButtons course={props.course} color={props.setTitleFont} />
       default:
         return 'Click any object on the page to change its settings';
     }
@@ -216,7 +189,9 @@ export default connect(
               <input
                 type="color"
                 value={props.course.colors.button}
-                onChange={(e) => props.setColorCourseByPart([e.target.value, 'button'])}
+                onChange={(e) =>
+                  props.setColorCourseByPart([e.target.value, 'button'])
+                }
               />
             </div>
             <div>
@@ -224,75 +199,77 @@ export default connect(
               <input
                 type="color"
                 value={props.course.colors.button}
-                onChange={(e) => props.setColorCourseByPart([e.target.value, 'fontButton'])}
+                onChange={(e) =>
+                  props.setColorCourseByPart([e.target.value, 'fontButton'])
+                }
               />
             </div>
           </div>
           <h5>Sections</h5>
           <div>
-        Show more courses
-        <label
-          className="switch"
-          data-toggle="tooltip"
-          data-placement="top"
-          title="Hide/show this section"
-        >
-          <input
-            type="checkbox"
-            onClick={(e) => props.showMoreCourses()}
-            checked={props.course.show.more.more_courses}
-          />
-          <span className="slider round"></span>
-        </label>
-      </div>
-      <div>
-        Show a quote
-        <label
-          className="switch"
-          data-toggle="tooltip"
-          data-placement="top"
-          title="Hide/show this section"
-        >
-          <input
-            type="checkbox"
-            onClick={(e) => props.showBelive()}
-            checked={props.course.show.more.belive}
-          />
-          <span className="slider round"></span>
-        </label>
-      </div>
-      <div>
-        Show top educators
-        <label
-          className="switch"
-          data-toggle="tooltip"
-          data-placement="top"
-          title="Hide/show this section"
-        >
-          <input
-            type="checkbox"
-            onClick={(e) => props.showTopEducarors()}
-            checked={props.course.show.more.top_educators}
-          />
-          <span className="slider round"></span>
-        </label>
-      </div>
-      <div>
-        Show footer
-        <label
-          className="switch"
-          data-toggle="tooltip"
-          data-placement="top"
-          title="Hide/show this section"
-        >
-          <input
-            type="checkbox"
-            onClick={(e) => props.showCourseFooter()}
-            checked={props.course.show.more.footer}
-          />
-          <span className="slider round"></span>
-        </label>
-      </div>
+            Show more courses
+            <label
+              className="switch"
+              data-toggle="tooltip"
+              data-placement="top"
+              title="Hide/show this section"
+            >
+              <input
+                type="checkbox"
+                onClick={(e) => props.showMoreCourses()}
+                checked={props.course.show.more.more_courses}
+              />
+              <span className="slider round"></span>
+            </label>
+          </div>
+          <div>
+            Show a quote
+            <label
+              className="switch"
+              data-toggle="tooltip"
+              data-placement="top"
+              title="Hide/show this section"
+            >
+              <input
+                type="checkbox"
+                onClick={(e) => props.showBelive()}
+                checked={props.course.show.more.belive}
+              />
+              <span className="slider round"></span>
+            </label>
+          </div>
+          <div>
+            Show top educators
+            <label
+              className="switch"
+              data-toggle="tooltip"
+              data-placement="top"
+              title="Hide/show this section"
+            >
+              <input
+                type="checkbox"
+                onClick={(e) => props.showTopEducarors()}
+                checked={props.course.show.more.top_educators}
+              />
+              <span className="slider round"></span>
+            </label>
+          </div>
+          <div>
+            Show footer
+            <label
+              className="switch"
+              data-toggle="tooltip"
+              data-placement="top"
+              title="Hide/show this section"
+            >
+              <input
+                type="checkbox"
+                onClick={(e) => props.showCourseFooter()}
+                checked={props.course.show.more.footer}
+              />
+              <span className="slider round"></span>
+            </label>
+          </div>
           <ConfigBuyCourse data={props} />
         </div>
         <br />
@@ -311,13 +288,6 @@ export default connect(
       </div>
     </>
   );
-});
+}
 
-// export default CourseConfig;
-
-/* Course Description
-          {props.course.description['Course Description']}
-          Certification
-          {props.course.description['Certification']}
-          Who this course is for
-          {props.course.description['Course Description']} */
+export default connect(mapStateToProps, mapDispatchToProps)(CourseConfig);

@@ -1,12 +1,10 @@
 // import '../courseConfig/node_modules/bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import '../../ViewComponents/homepage/App.css';
-import { Card, CardDeck, Col, Container, Dropdown, Form, Row } from 'react-bootstrap';
-import { Component } from 'react';
+import { Card, CardDeck, Col, Container, Form, Row } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { actions } from '../../Store/actions';
-import { handleDelete, handleImage, handleImageById } from '../handleImage';
-import { FaTrash } from 'react-icons/fa';
+import { handleImageById } from '../handleImage';
 
 function mapStateToProps(state) {
   return {
